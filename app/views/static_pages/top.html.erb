@@ -1,9 +1,10 @@
-<!-- home/index.html.erb -->
+<!-- top.html.erb -->
 <div class="page-container d-flex flex-column align-items-center">
   <!-- Hero/Header Image Placeholder -->
   <div class="w-100 hero-image-wrapper shadow-sm mb-4">
-    <img alt="A warm, inviting photo of a rustic wooden vegetable stand filled with fresh, bright green vegetables and colorful fruits. The setting is bathed in soft, natural sunlight, creating a cozy and approachable atmosphere. The color palette emphasizes earthy browns, vibrant harvest greens, and soft beige tones, reflecting a local community market vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjEpojAIkZfjlGevIrxQeb6wLQ-t6K0Fps1dOmQ9z4HQibtt8HrtRK7sbHbNnZrW35NKTviK4Ua_sYwe-DtsieOp-7OWB8eZxPqpJh5BmfYTvLrZKZVBpXjbg5mEPtLsLfnfIYEdxAULV0mBX4q8wkodnG0INahVSjHqgoicIhi3Yj5TULY3baSEZFrsRaPDrGtknWPMZ32eR0wmhvhjCg4tUX3tR3hVdaAjtvnjCeWOGcfpN6EmGuMw"/>
+    <%= image_tag "top.jpg", alt: "直売所に並ぶ、新鮮な野菜と果物" %>
     <div class="hero-image-overlay"></div>
+    <p class="hero-image-caption">今日は何があるかな、を届けよう</p>
   </div>
 
   <!-- Primary Action Area (Producers) -->
@@ -41,4 +42,19 @@
       <span class="font-button-text">近くの直販店を探す</span>
     </button>
   </div>
+  <!-- About Section -->
+  <section class="w-100 about-section">
+    <h2 class="about-heading">
+      <i class="bi bi-info-circle-fill me-2"></i>「あなたの町の直売所」とは
+    </h2>
+    <p class="about-body">
+      直売所は、新鮮な野菜が並ぶ、地域の宝物です。
+      でも「今日、何が出ているか」がわからず、買い物の計画に入れづらいという声があります。
+    </p>
+    <p class="about-body">
+      生産者の方が今日の出荷状況を写真で伝えることで、
+      消費者は安心して直売所に立ち寄れるようになります。
+      投稿は写真1枚だけでOK。難しい操作は一切ありません。
+    </p>
+  </section>
 </div>

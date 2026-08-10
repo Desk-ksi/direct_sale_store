@@ -1,0 +1,2 @@
+class UserPostLike < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class UserShopLike < ApplicationRecord
+end

@@ -39,10 +39,6 @@ gem "kamal", require: false
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
-gem "ruby-vips", "~> 2.0"
-
 # ファイルアップロードのためのGem
 gem "carrierwave", "2.2.2"
 

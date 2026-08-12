@@ -1,0 +1,27 @@
+<div class="page-container d-flex flex-column align-items-center">
+  <div class="step-indicator w-100 mb-4">
+    <span class="step-indicator-current">2</span> / 2
+  </div>
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">届いた番号を入力してください</h2>
+    <p class="font-body-md text-secondary mb-0">
+      <span class="phone-number-display"><%= @phone_number %></span> 宛に<br>
+      6桁の確認コードをお送りしました。
+    </p>
+  </div>
+  <%= form_with url: verify_login_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <div class="w-100">
+      <label for="code" class="font-label-lg mb-2 d-block">確認コード</label>
+      <%= f.text_field :code,
+            id: "code",
+            class: "form-input-lg form-input-code text-center",
+            placeholder: "123456",
+            inputmode: "numeric",
+            maxlength: 6,
+            autocomplete: "one-time-code",
+            required: true %>
+    </div>
+    <%= f.submit "確認する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+  <%= link_to "電話番号を入力しなおす", new_login_path, class: "btn-link-plain mt-3" %>
+</div>

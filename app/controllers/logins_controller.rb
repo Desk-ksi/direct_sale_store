@@ -25,7 +25,9 @@ class LoginController < ApplicationController
       render :new
     end
   end
-  def confirm;end
+  def confirm
+    @phone_number = session[:phone_number]
+  end
   def verify
     account_sid = Rails.application.credentials.twilio.account_sid
     auth_token = Rails.application.credentials.twilio.auth_token
@@ -51,11 +53,13 @@ class LoginController < ApplicationController
           redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
         end
       else
+        @phone_number = session[:phone_number]
         flash.now[:danger] = '認証に失敗しました。もう一度お試しください'
         render :confirm
       end
     rescue Twilio::REST::RestError => e
       Rails.logger.error(e.message)
+      @phone_number = session[:phone_number]
       flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
       render :confirm
     end

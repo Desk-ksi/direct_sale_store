@@ -227,3 +227,72 @@ body {
     color: var(--bs-body-color);
     margin-bottom: 0.75rem;
 }
+.form-input-lg {
+    width: 100%;
+    min-height: 56px;
+    font-size: 20px;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-outline-variant);
+    background-color: #fff;
+}
+.form-input-lg:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(21, 66, 18, 0.15);
+}
+.form-input-code {
+    letter-spacing: 0.5rem;
+    font-weight: 700;
+}
+
+.form-hint {
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    color: var(--color-on-surface-variant);
+}
+
+.phone-number-display {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.btn-primary-wide {
+    width: 100%;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border: 1px solid rgba(194, 201, 187, 0.5);
+    border-radius: 1.5rem;
+    min-height: 56px;
+    font-family: 'notoSans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 1rem;
+}
+.btn-primary-wide:hover {
+    background-color: rgba(21, 66, 18, 0.9);
+    color: #fff;
+}
+
+.btn-link-plain {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--color-secondary);
+    text-decoration: underline;
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    min-height: 48px;
+}
+
+.step-indicator {
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+}
+.step-indicator-current {
+    font-weight: 700;
+    color: var(--color-primary);
+}

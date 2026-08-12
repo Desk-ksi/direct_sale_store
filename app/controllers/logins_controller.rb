@@ -21,7 +21,7 @@ class LoginController < ApplicationController
       redirect_to action: :confirm
     rescue Twilio::REST::RestError => e
       Rails.logger.error(e.message)
-      flash.now[:danger] = "エラーが発生しました。時間をおいて、もう一度お試しください"
+      flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
       render :new
     end
   end
@@ -43,18 +43,20 @@ class LoginController < ApplicationController
                             code: code
                           )
       if verification_check.status == "approved"
-        unless User.exists?(phone_number: session[:phone_number])
-          redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
-        else
+        user = User.find_by(phone_number: session[:phone_number])
+        if user.present?
+          session[:user_id] = user.id
           redirect_to root_path, success: 'ログインが完了しました'
+        else
+          redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
         end
       else
-        flash.now[:danger] = '認証に失敗しました'
+        flash.now[:danger] = '認証に失敗しました。もう一度お試しください'
         render :confirm
       end
     rescue Twilio::REST::RestError => e
       Rails.logger.error(e.message)
-      flash.now[:danger] = "エラーが発生しました。時間をおいて、もう一度お試しください"
+      flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
       render :confirm
     end
   end

@@ -10,7 +10,7 @@
   <!-- Primary Action Area (Producers) -->
   <div class="w-100 d-flex flex-column gap-3 mb-4">
     <!-- Register Shop Button -->
-    <button class="w-100 btn-primary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press">
+    <%= link_to new_login_path, class:"w-100 btn-primary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press" do %>
       <div class="icon-wrapper p-3 d-flex align-items-center justify-content-center">
         <i class="bi bi-plus-square-dotted" style="font-size: 3rem;"></i>
       </div>
@@ -18,7 +18,7 @@
         <span class="font-label-lg mb-1" style="opacity: 0.9;">直売所の方へ</span>
         <span class="font-button-text fs-4">あなたの店舗を登録する</span>
       </div>
-    </button>
+    <% end %>
 
     <!-- Post Inventory Button (High Contrast/Urgency) -->
     <button class="w-100 btn-tertiary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press">

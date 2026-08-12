@@ -1,4 +1,4 @@
-class LoginController < ApplicationController
+class LoginsController < ApplicationController
   def new;end
   def create
     account_sid = Rails.application.credentials.twilio.account_sid

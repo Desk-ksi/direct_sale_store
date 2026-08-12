@@ -1,0 +1,61 @@
+class LoginController < ApplicationController
+  def new;end
+  def create
+    account_sid = Rails.application.credentials.twilio.account_sid
+    auth_token = Rails.application.credentials.twilio.auth_token
+    verify_service_sid = Rails.application.credentials.twilio.verify_service_sid
+    phone_number = params[:phone_number].delete("^0-9")
+    phone_number_set = phone_number.sub(/0/,'+81')
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    begin
+      verification = @client
+                    .verify
+                    .v2
+                    .services(verify_service_sid)
+                    .verifications
+                    .create(
+                      channel: 'sms',
+                      to: phone_number_set
+                    )
+      session[:phone_number] = phone_number_set
+      redirect_to action: :confirm
+    rescue Twilio::REST::RestError => e
+      Rails.logger.error(e.message)
+      flash.now[:danger] = "エラーが発生しました。時間をおいて、もう一度お試しください"
+      render :new
+    end
+  end
+  def confirm;end
+  def verify
+    account_sid = Rails.application.credentials.twilio.account_sid
+    auth_token = Rails.application.credentials.twilio.auth_token
+    verify_service_sid = Rails.application.credentials.twilio.verify_service_sid
+    code = params[:code]
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    begin
+      verification_check = @client
+                          .verify
+                          .v2
+                          .services(verify_service_sid)
+                          .verification_checks
+                          .create(
+                            to: session[:phone_number],
+                            code: code
+                          )
+      if verification_check.status == "approved"
+        unless User.exists?(phone_number: session[:phone_number])
+          redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
+        else
+          redirect_to root_path, success: 'ログインが完了しました'
+        end
+      else
+        flash.now[:danger] = '認証に失敗しました'
+        render :confirm
+      end
+    rescue Twilio::REST::RestError => e
+      Rails.logger.error(e.message)
+      flash.now[:danger] = "エラーが発生しました。時間をおいて、もう一度お試しください"
+      render :confirm
+    end
+  end
+end

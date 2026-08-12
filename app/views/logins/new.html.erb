@@ -1,0 +1,27 @@
+<div class="page-container d-flex flex-column align-items-center">
+  <div class="step-indicator w-100 mb-4">
+    <span class="step-indicator-current">1</span> / 2
+  </div>
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">電話番号を入力してください</h2>
+    <p class="font-body-md text-secondary mb-0">
+      入力いただいた番号に、確認のためのSMSをお送りします。
+    </p>
+  </div>
+  <%= form_with url: login_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <div class="w-100">
+      <label for="phone_number" class="font-label-lg mb-2 d-block">携帯電話番号</label>
+      <%= f.telephone_field :phone_number,
+            id: "phone_number",
+            class: "form-input-lg",
+            placeholder: "09012345678",
+            inputmode: "numeric",
+            autocomplete: "tel",
+            required: true %>
+      <p class="form-hint mt-2 mb-0">
+        ハイフンは、あってもなくても大丈夫です
+      </p>
+    </div>
+    <%= f.submit "確認コードを送信する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+</div>

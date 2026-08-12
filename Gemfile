@@ -42,6 +42,9 @@ gem "thruster", require: false
 # ファイルアップロードのためのGem
 gem "carrierwave", "2.2.2"
 
+# SMS認証を外部APIを使用して、利用できるようにするためのtwilioのGem
+gem 'twilio-ruby', '~> 7.10.7'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

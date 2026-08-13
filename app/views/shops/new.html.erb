@@ -1,0 +1,123 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">あなたの店舗を登録する</h2>
+    <p class="font-body-md text-secondary mb-0">
+      必要なのは、お店の名前と写真、そして今いる場所だけです。
+    </p>
+  </div>
+
+  <%= form_with model: @shop, url: shops_path, method: :post, local: true, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <% if @shop.errors.any? %>
+      <div class="alert-box" role="alert">
+        <% @shop.errors.full_messages.each do |message| %>
+          <p class="mb-0"><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- 店舗写真 -->
+    <div class="w-100">
+      <span class="font-label-lg mb-2 d-block">
+        お店の写真<span class="required-mark">必須</span>
+      </span>
+      <label for="shop_image" class="photo-upload-card">
+        <div id="photo-preview-icon" class="photo-upload-icon">
+          <i class="bi bi-camera-fill"></i>
+        </div>
+        <img id="photo-preview-img" class="photo-preview-img d-none" alt="選択した写真のプレビュー">
+        <span class="photo-upload-label">タップして写真を撮る・選ぶ</span>
+      </label>
+      <%= f.file_field :shop_image,
+            id: "shop_image",
+            class: "d-none",
+            accept: "image/*",
+            capture: "environment",
+            required: true %>
+    </div>
+
+    <!-- 位置情報 -->
+    <div class="w-100">
+      <span class="font-label-lg mb-2 d-block">
+        お店の場所<span class="required-mark">必須</span>
+      </span>
+      <button type="button" id="get-location-btn" class="btn-location-action tactile-press">
+        <i class="bi bi-geo-alt-fill fs-3"></i>
+        <span id="location-btn-label">お店の前で、このボタンを押してください</span>
+      </button>
+      <p id="location-status" class="form-hint mt-2 mb-0"></p>
+      <%= f.hidden_field :latitude, id: "shop_latitude" %>
+      <%= f.hidden_field :longitude, id: "shop_longitude" %>
+    </div>
+
+    <!-- 店名 -->
+    <div class="w-100">
+      <label for="shop_name" class="font-label-lg mb-2 d-block">
+        お店の名前<span class="required-mark">必須</span>
+      </label>
+      <%= f.text_field :name,
+            id: "shop_name",
+            class: "form-input-lg",
+            placeholder: "山田農園直売所",
+            required: true %>
+    </div>
+
+    <!-- さらに詳しく(任意項目、折りたたみ) -->
+    <div class="w-100">
+      <button class="btn-expand-toggle w-100" type="button" data-bs-toggle="collapse" data-bs-target="#shop-detail-fields" aria-expanded="false" aria-controls="shop-detail-fields">
+        <span>さらに詳しく入力する(任意)</span>
+        <i class="bi bi-chevron-down"></i>
+      </button>
+
+      <div class="collapse" id="shop-detail-fields">
+        <div class="d-flex flex-column gap-4 pt-4">
+
+          <div class="w-100">
+            <label for="shop_kodawari" class="font-label-lg mb-2 d-block">商品へのこだわり</label>
+            <%= f.text_area :kodawari,
+                  id: "shop_kodawari",
+                  class: "form-input-lg form-textarea",
+                  rows: 4,
+                  placeholder: "無農薬で育てた、朝どれ野菜が自慢です" %>
+          </div>
+
+          <div class="w-100">
+            <label for="shop_price" class="font-label-lg mb-2 d-block">価格帯</label>
+            <%= f.text_field :price,
+                  id: "shop_price",
+                  class: "form-input-lg",
+                  placeholder: "100円〜300円" %>
+          </div>
+
+          <div class="w-100">
+            <label for="shop_season" class="font-label-lg mb-2 d-block">販売時期</label>
+            <%= f.text_field :season,
+                  id: "shop_season",
+                  class: "form-input-lg",
+                  placeholder: "4月〜11月" %>
+          </div>
+
+          <div class="w-100">
+            <label for="shop_business_hours" class="font-label-lg mb-2 d-block">営業時間</label>
+            <%= f.text_field :business_hours,
+                  id: "shop_business_hours",
+                  class: "form-input-lg",
+                  placeholder: "日の出〜日没" %>
+          </div>
+
+          <div class="w-100">
+            <label for="shop_timing" class="font-label-lg mb-2 d-block">出荷頻度</label>
+            <%= f.text_field :timing,
+                  id: "shop_timing",
+                  class: "form-input-lg",
+                  placeholder: "毎日 / 不定期" %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit "この内容で登録する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+
+</div>

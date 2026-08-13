@@ -355,3 +355,91 @@ body {
     padding: 0.75rem 1rem;
     font-size: 16px;
 }
+// 写真アップロードカード
+.photo-upload-card {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 2px dashed var(--color-outline-variant);
+    border-radius: 1.25rem;
+    background-color: var(--color-surface-container);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.2s;
+}
+.photo-upload-card:hover {
+    border-color: var(--color-primary);
+}
+.photo-upload-icon {
+    font-size: 2.5rem;
+    color: var(--color-on-surface-variant);
+}
+.photo-upload-label {
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    color: var(--color-on-surface-variant);
+}
+.photo-preview-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+// 位置情報ボタン
+.btn-location-action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 72px;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    color: var(--color-on-surface-variant);
+    font-family: 'notoSans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 1rem;
+}
+.btn-location-action.is-loading {
+    opacity: 0.6;
+}
+.btn-location-action.is-done {
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-color: var(--color-primary);
+}
+
+// 折りたたみトグル
+.btn-expand-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--color-outline-variant);
+    padding: 1rem 0;
+    font-family: 'notoSans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.btn-expand-toggle .bi-chevron-down {
+    transition: transform 0.2s;
+}
+.btn-expand-toggle[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}

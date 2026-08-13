@@ -1,0 +1,63 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="step-indicator w-100 mb-4">
+    <span class="step-indicator-current">最後の</span>ステップです
+  </div>
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">お名前を教えてください</h2>
+    <p class="font-body-md text-secondary mb-0">
+      電話番号の確認が完了しました。もう少しで登録が終わります。
+    </p>
+  </div>
+
+  <%= form_with model: @user, url: users_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <% if @user.errors.any? %>
+      <div class="alert-box" role="alert">
+        <% @user.errors.full_messages.each do |message| %>
+          <p class="mb-0"><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="w-100">
+      <label for="user_name" class="font-label-lg mb-2 d-block">
+        お名前<span class="required-mark">必須</span>
+      </label>
+      <%= f.text_field :name,
+            id: "user_name",
+            class: "form-input-lg",
+            placeholder: "山田 太郎",
+            autocomplete: "name",
+            required: true %>
+    </div>
+
+    <div class="w-100">
+      <span class="font-label-lg mb-2 d-block">
+        年代<span class="optional-mark">任意</span>
+      </span>
+      <div class="age-select-group">
+        <% [["40代以下", 40], ["50代", 50], ["60代", 60], ["70代", 70], ["80代以上", 85]].each do |label, value| %>
+          <label class="age-select-btn">
+            <%= f.radio_button :age, value, class: "age-select-input" %>
+            <span><%= label %></span>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="w-100">
+      <label for="user_email" class="font-label-lg mb-2 d-block">
+        メールアドレス<span class="optional-mark">任意</span>
+      </label>
+      <%= f.email_field :email,
+            id: "user_email",
+            class: "form-input-lg",
+            placeholder: "example@mail.com",
+            autocomplete: "email" %>
+    </div>
+
+    <%= f.submit "登録を完了する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+
+</div>

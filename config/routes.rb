@@ -18,4 +18,5 @@ Rails.application.routes.draw do
       post :verify
     end
   end
+  resources :users, only: %i{ new create }
 end

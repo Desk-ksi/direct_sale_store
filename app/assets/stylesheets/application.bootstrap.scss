@@ -382,7 +382,10 @@ body {
 .photo-upload-label {
     font-family: 'notoSans', sans-serif;
     font-size: 16px;
-    color: var(--color-on-surface-variant);
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 .photo-preview-img {
     position: absolute;

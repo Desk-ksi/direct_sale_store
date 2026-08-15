@@ -1,0 +1,46 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <div class="complete-check-icon">
+      <i class="bi bi-check-circle-fill"></i>
+    </div>
+    <h2 class="font-headline-lg-mobile mb-2">店舗登録が完了しました</h2>
+    <p class="font-body-md text-secondary mb-0">
+      ここから、今日の出荷状況を、お客さんに伝えられます。
+    </p>
+  </div>
+
+  <div class="w-100 d-flex flex-column gap-3 mb-4">
+
+    <%= link_to "#", class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-camera-fill"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">今日の出荷状況を伝えるには</span>
+        <span class="guide-link-desc">投稿の方法を確認する</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+    <%= link_to "#", class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-printer-fill"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">アプリで出荷状況を投稿していることをお客さんに伝えるには</span>
+        <span class="guide-link-desc">ポスターを印刷する</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+  </div>
+
+  <p class="font-body-md form-hint text-center mb-4">
+    これらは、アプリ下にある「使い方」から、いつでも、確認できます。
+  </p>
+
+  <%= link_to "今日の出荷を投稿する", "#", class: "btn-primary-wide tactile-press mb-3" %>
+  <%= link_to "トップページに戻る", root_path, class: "btn-secondary-wide tactile-press" %>
+
+</div>

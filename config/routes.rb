@@ -19,5 +19,9 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: %i{ new create }
-  resources :shops, only: %i{ new create }
+  resources :shops, only: %i{ new create } do
+    collection do
+      get :complete
+    end
+  end
 end

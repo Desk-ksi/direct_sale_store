@@ -446,3 +446,57 @@ body {
     min-height: 120px;
     resize: vertical;
 }
+.complete-check-icon {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.guide-link-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: var(--color-on-background);
+}
+.guide-link-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-radius: 50%;
+    font-size: 1.25rem;
+}
+.guide-link-desc {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    color: var(--color-on-surface-variant);
+}
+.guide-link-arrow {
+    margin-left: auto;
+    color: var(--color-on-surface-variant);
+}
+.btn-secondary-wide {
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 1.5rem;
+    min-height: 56px;
+    font-family: 'notoSans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 1rem;
+}
+.btn-secondary-wide:hover {
+    background-color: var(--color-primary-container);
+}

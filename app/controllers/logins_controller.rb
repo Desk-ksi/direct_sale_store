@@ -1,4 +1,7 @@
 class LoginsController < ApplicationController
+  skip_before_action :require_login
+  skip_before_action :require_login_has_shop
+  before_action :logged_in_new_shop_path?
   def new;end
   def create
     account_sid = Rails.application.credentials.twilio.account_sid
@@ -62,6 +65,14 @@ class LoginsController < ApplicationController
       @phone_number = session[:phone_number]
       flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
       render :confirm
+    end
+  end
+
+  private
+
+  def logged_in_new_shop_path?
+    if logged_in?
+      redirect_to new_shop_path, success: "店舗登録を行なってください"
     end
   end
 end

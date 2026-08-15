@@ -24,4 +24,4 @@ Rails.application.routes.draw do
       get :complete
     end
   end
-end
+  resources :posts

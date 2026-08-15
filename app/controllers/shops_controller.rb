@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  skip_before_action :require_login_has_shop
   def new
     @shop = Shop.new
   end

@@ -57,4 +57,40 @@
       投稿は写真1枚だけでOK。難しい操作は一切ありません。
     </p>
   </section>
+
+  <!-- Recent Posts -->
+  <section class="w-100 recent-posts-section">
+    <h2 class="recent-posts-heading">
+      <i class="bi bi-camera-fill me-2"></i>最近の出荷状況
+    </h2>
+
+    <% if @posts.present? %>
+      <div class="recent-posts-list">
+        <% @posts.each do |post| %>
+          <div class="recent-post-card <%= 'is-sold-out' if post.sold_out %>">
+            <div class="recent-post-image">
+              <% if post.post_images.first %>
+                <%= image_tag post.post_images.first.post_image.url, alt: "#{post.shop.name}の出荷写真" %>
+              <% end %>
+              <% if post.sold_out %>
+                <span class="recent-post-sold-out-badge">売り切れ</span>
+              <% end %>
+            </div>
+            <div class="recent-post-body">
+              <p class="recent-post-shop-name mb-1"><%= post.shop.name %></p>
+              <% if post.merchandise.present? %>
+                <p class="recent-post-merchandise mb-1"><%= post.merchandise %></p>
+              <% end %>
+              <p class="recent-post-time mb-0"><%= post.created_at.strftime("%m/%d %H:%M") %>時点</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="font-body-md text-secondary text-center">
+        まだ投稿がありません。
+      </p>
+    <% end %>
+  </section>
+
 </div>

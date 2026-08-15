@@ -1,5 +1,9 @@
 class ShopsController < ApplicationController
-  skip_before_action :require_login_has_shop
+  skip_before_action :require_login, only: :index
+  skip_before_action :require_login_has_shop, only: :index
+  def index
+    @shops = Shop.includes(:posts)
+  end
   def new
     @shop = Shop.new
   end

@@ -37,10 +37,10 @@
 
   <!-- Secondary Action Area (Consumers) -->
   <div class="w-100 mt-4">
-    <button class="w-100 btn-search-action shadow-sm d-flex align-items-center justify-content-center gap-3 p-3 tactile-press">
+    <%= link_to shops_path, class:"w-100 btn-search-action shadow-sm d-flex align-items-center justify-content-center gap-3 p-3 tactile-press" do %>
       <i class="bi bi-search fs-2" style="transition: color 0.2s;"></i>
       <span class="font-button-text">近くの直販店を探す</span>
-    </button>
+    <% end %>
   </div>
   <!-- About Section -->
   <section class="w-100 about-section">

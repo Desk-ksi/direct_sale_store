@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: %i{ new create }
-  resources :shops, only: %i{ new create } do
+  resources :shops, only: %i{ new create index } do
     collection do
       get :complete
     end

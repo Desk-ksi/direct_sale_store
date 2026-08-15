@@ -24,4 +24,5 @@ Rails.application.routes.draw do
       get :complete
     end
   end
-  resources :posts
+  resources :posts, only: %i{ new create }
+end

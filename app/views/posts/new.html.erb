@@ -1,0 +1,92 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">今日の出荷状況を投稿する</h2>
+    <p class="font-body-md text-secondary mb-0">
+      写真を1枚撮るだけで投稿できます。
+    </p>
+  </div>
+
+  <%= form_with model: @post, url: posts_path, method: :post, local: true, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <% if @post.errors.any? %>
+      <div class="alert-box" role="alert">
+        <% @post.errors.full_messages.each do |message| %>
+          <p class="mb-0"><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- 投稿写真(1枚) -->
+    <div class="w-100">
+      <span class="font-label-lg mb-2 d-block">
+        今日の写真<span class="required-mark">必須</span>
+      </span>
+
+      <%= f.fields_for :post_images do |image_form| %>
+        <label for="post_image" class="photo-upload-card">
+          <div id="post-photo-preview-icon" class="photo-upload-icon">
+            <i class="bi bi-camera-fill"></i>
+          </div>
+          <img id="post-photo-preview-img" class="photo-preview-img d-none" alt="選択した写真のプレビュー">
+          <span id="post-photo-upload-label" class="photo-upload-label">タップして写真を撮る・選ぶ</span>
+          <%= image_form.file_field :post_image,
+                id: "post_image",
+                class: "d-none",
+                accept: "image/*",
+                capture: "environment",
+                required: true %>
+        </label>
+      <% end %>
+    </div>
+
+    <!-- さらに詳しく(任意項目、折りたたみ) -->
+    <div class="w-100">
+      <button class="btn-expand-toggle w-100" type="button" data-bs-toggle="collapse" data-bs-target="#post-detail-fields" aria-expanded="false" aria-controls="post-detail-fields">
+        <span>さらに詳しく入力する(任意)</span>
+        <i class="bi bi-chevron-down"></i>
+      </button>
+
+      <div class="collapse" id="post-detail-fields">
+        <div class="d-flex flex-column gap-4 pt-4">
+
+          <div class="w-100">
+            <label for="post_merchandise" class="font-label-lg mb-2 d-block">今日の商品</label>
+            <%= f.text_field :merchandise,
+                  id: "post_merchandise",
+                  class: "form-input-lg",
+                  placeholder: "トマト、きゅうり、なす" %>
+          </div>
+
+          <div class="w-100">
+            <label for="post_top_merchandise" class="font-label-lg mb-2 d-block">今日の一押し</label>
+            <%= f.text_field :top_merchandise,
+                  id: "post_top_merchandise",
+                  class: "form-input-lg",
+                  placeholder: "採れたて完熟トマト" %>
+          </div>
+
+          <div class="w-100">
+            <label for="post_comment" class="font-label-lg mb-2 d-block">コメント</label>
+            <%= f.text_area :comment,
+                  id: "post_comment",
+                  class: "form-input-lg form-textarea",
+                  rows: 3,
+                  placeholder: "今朝収穫したばかりです" %>
+          </div>
+
+          <div class="w-100">
+            <label for="post_schedule" class="font-label-lg mb-2 d-block">明日の予定</label>
+            <%= f.text_field :schedule,
+                  id: "post_schedule",
+                  class: "form-input-lg",
+                  placeholder: "明日はピーマンも出す予定です" %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit "この内容で投稿する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+
+</div>

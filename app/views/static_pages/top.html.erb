@@ -21,7 +21,7 @@
     <% end %>
 
     <!-- Post Inventory Button (High Contrast/Urgency) -->
-    <button class="w-100 btn-tertiary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press">
+    <%= link_to new_post_path, class:"w-100 btn-tertiary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press" do %>
       <div class="icon-wrapper p-3 d-flex align-items-center justify-content-center">
         <i class="bi bi-truck" style="font-size: 3rem;"></i>
       </div>
@@ -29,7 +29,7 @@
         <span class="font-label-lg mb-1" style="opacity: 0.9;">入荷・出荷のお知らせ</span>
         <span class="font-button-text fs-4">今日の出荷状況を投稿する</span>
       </div>
-    </button>
+    <% end %>
   </div>
 
   <!-- Divider -->

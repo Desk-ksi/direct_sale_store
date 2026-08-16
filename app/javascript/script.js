@@ -54,3 +54,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+// 現在地を取得して、現在地をパラメーターにしてindex_distance_shops_pathに送る
+document.addEventListener("DOMContentLoaded", function() {
+  const distanceGetButton = document.getElementById('search-location-btn');
+  if (distanceGetButton) {
+    distanceGetButton.addEventListener('click', function() {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const paramsCurrentLatitude = position.coords.latitude;
+        const paramsCurrentLongitude = position.coords.longitude;
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        // window.location.hrefにURLを渡すことで、画面遷移が可能
+        // パラメーターとは、URLに載って、遷移先に送られる
+        // 「?」はURLのルールでこの先はパラメーターですよと明示している
+        // URLに載せられるのは、文字列のみ。緯度経度は変数に入っているため、JSの書き方である「${変数}」で文字列に直している
+        // これで遷移先のコントローラーで「current_latitude」「current_longitude」というパラメーターが使える
+        window.location.href = `/shops/index_distance?current_latitude=${paramsCurrentLatitude}&current_longitude=${paramsCurrentLongitude}`
+      })
+    })
+  }
+});

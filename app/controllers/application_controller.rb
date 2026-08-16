@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    redirect_to login_path, danger: "ログイン後に操作できます" unless logged_in?
+    redirect_to new_login_path, danger: "ログイン後に操作できます" unless logged_in?
   end
   def require_login_has_shop
     redirect_to new_shop_path, danger: "店舗登録後に操作できます" unless logged_in_has_shop?

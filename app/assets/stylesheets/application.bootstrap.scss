@@ -451,6 +451,14 @@ body {
     color: var(--color-on-surface-variant);
     opacity: 0.7;
 }
+.shop-list-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.shop-list-card-link:hover .shop-list-card {
+    border-color: var(--color-primary);
+}
 
 // 位置情報ボタン
 .btn-location-action {
@@ -669,5 +677,78 @@ body {
 .recent-post-time {
     font-family: 'notoSans', sans-serif;
     font-size: 12px;
+    color: var(--color-on-surface-variant);
+}
+.shop-detail-info {
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+}
+.shop-detail-info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 0.5rem;
+}
+.shop-detail-info-row:last-of-type {
+    margin-bottom: 0;
+}
+.shop-detail-info-row i {
+    color: var(--color-primary);
+    width: 20px;
+}
+.shop-detail-kodawari {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-on-surface-variant);
+    border-top: 1px solid var(--color-outline-variant);
+    padding-top: 0.75rem;
+}
+
+.shop-detail-post-card {
+    display: flex;
+    gap: 0.75rem;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    padding: 0.75rem;
+}
+.shop-detail-post-card.is-sold-out {
+    opacity: 0.6;
+}
+.shop-detail-post-image {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: var(--color-surface-container-high);
+}
+.shop-detail-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.shop-detail-post-body {
+    min-width: 0;
+}
+.shop-detail-post-time {
+    font-family: 'notoSans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.shop-detail-post-line {
+    font-family: 'notoSans', sans-serif;
+    font-size: 14px;
+    color: var(--color-on-background);
+}
+.shop-detail-post-schedule {
     color: var(--color-on-surface-variant);
 }

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: %i{ new create }
-  resources :shops, only: %i{ new create index } do
+  resources :shops, only: %i{ new create index show } do
     collection do
       get :complete
       get :index_distance

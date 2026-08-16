@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
-  skip_before_action :require_login, only: %i{ index index_distance }
-  skip_before_action :require_login_has_shop, only: %i{ index index_distance }
+  skip_before_action :require_login, only: %i{ index index_distance show }
+  skip_before_action :require_login_has_shop, only: %i{ index index_distance show }
   def index
     @shops = Shop.includes(:posts)
   end
@@ -49,6 +49,11 @@ class ShopsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def show
+    @shop = Shop.find_by(id: params[:id])
+    @posts = @shop.posts
+  end
+
 
   private
 

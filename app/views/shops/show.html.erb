@@ -1,0 +1,89 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <!-- 店舗の外観 -->
+  <div class="w-100 hero-image-wrapper shadow-sm mb-4">
+    <%= image_tag @shop.shop_image.url, alt: "#{@shop.name}の外観" %>
+    <div class="hero-image-overlay"></div>
+  </div>
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2"><%= @shop.name %></h2>
+  </div>
+
+  <!-- 店舗の基本情報 -->
+  <section class="w-100 shop-detail-info mb-4">
+    <% if @shop.business_hours.present? %>
+      <div class="shop-detail-info-row">
+        <i class="bi bi-clock"></i>
+        <span><%= @shop.business_hours %></span>
+      </div>
+    <% end %>
+    <% if @shop.timing.present? %>
+      <div class="shop-detail-info-row">
+        <i class="bi bi-calendar-week"></i>
+        <span><%= @shop.timing %></span>
+      </div>
+    <% end %>
+    <% if @shop.price.present? %>
+      <div class="shop-detail-info-row">
+        <i class="bi bi-tag"></i>
+        <span><%= @shop.price %></span>
+      </div>
+    <% end %>
+    <% if @shop.season.present? %>
+      <div class="shop-detail-info-row">
+        <i class="bi bi-flower1"></i>
+        <span><%= @shop.season %></span>
+      </div>
+    <% end %>
+    <% if @shop.kodawari.present? %>
+      <p class="shop-detail-kodawari mt-3 mb-0"><%= @shop.kodawari %></p>
+    <% end %>
+  </section>
+
+  <div class="w-100 custom-divider my-2"></div>
+
+  <!-- 出荷状況の一覧 -->
+  <section class="w-100 mt-4">
+    <h3 class="recent-posts-heading">
+      <i class="bi bi-camera-fill me-2"></i>出荷状況
+    </h3>
+
+    <% if @posts.present? %>
+      <div class="d-flex flex-column gap-3">
+        <% @posts.order(created_at: :desc).each do |post| %>
+          <div class="shop-detail-post-card <%= 'is-sold-out' if post.sold_out %>">
+            <div class="shop-detail-post-image">
+              <% if post.post_images.first %>
+                <%= image_tag post.post_images.first.post_image.url, alt: "#{@shop.name}の出荷写真" %>
+              <% end %>
+              <% if post.sold_out %>
+                <span class="recent-post-sold-out-badge">売り切れ</span>
+              <% end %>
+            </div>
+            <div class="shop-detail-post-body">
+              <p class="shop-detail-post-time mb-2"><%= post.created_at.strftime("%m/%d %H:%M") %>時点</p>
+              <% if post.merchandise.present? %>
+                <p class="shop-detail-post-line mb-1"><strong>今日の商品:</strong> <%= post.merchandise %></p>
+              <% end %>
+              <% if post.top_merchandise.present? %>
+                <p class="shop-detail-post-line mb-1"><strong>今日の一押し:</strong> <%= post.top_merchandise %></p>
+              <% end %>
+              <% if post.comment.present? %>
+                <p class="shop-detail-post-line mb-1"><%= post.comment %></p>
+              <% end %>
+              <% if post.schedule.present? %>
+                <p class="shop-detail-post-line mb-0 shop-detail-post-schedule"><i class="bi bi-arrow-right-short"></i><%= post.schedule %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="font-body-md text-secondary text-center">
+        まだ、投稿がありません。
+      </p>
+    <% end %>
+  </section>
+
+</div>

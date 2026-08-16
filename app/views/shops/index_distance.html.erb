@@ -10,31 +10,33 @@
   <% if @distance.present? %>
     <div class="w-100 d-flex flex-column gap-3">
       <% @distance.each do |result, shop| %>
-        <div class="shop-list-card">
-          <div class="shop-list-image">
-            <%= image_tag shop.shop_image.url, alt: "#{shop.name}の外観" %>
-          </div>
-          <div class="shop-list-body">
-            <p class="shop-list-name mb-1"><%= shop.name %></p>
-            <p class="shop-list-distance mb-1">
-              <i class="bi bi-geo-alt"></i> 現在地から 約<%= result.round(1) %>km
-            </p>
-            <% latest = shop.posts.order(created_at: :desc).first %>
-            <% if latest %>
-              <p class="shop-list-latest mb-0 <%= 'is-sold-out' if latest.sold_out %>">
-                <% if latest.sold_out %>
-                  売り切れました
-                <% else %>
-                  <%= latest.created_at.strftime("%m/%d %H:%M") %>時点の、出荷あり
-                <% end %>
+        <%= link_to shop_path(shop), class: "shop-list-card-link" do %>
+          <div class="shop-list-card">
+            <div class="shop-list-image">
+              <%= image_tag shop.shop_image.url, alt: "#{shop.name}の外観" %>
+            </div>
+            <div class="shop-list-body">
+              <p class="shop-list-name mb-1"><%= shop.name %></p>
+              <p class="shop-list-distance mb-1">
+                <i class="bi bi-geo-alt"></i> 現在地から 約<%= result.round(1) %>km
               </p>
-            <% else %>
-              <p class="shop-list-latest mb-0 is-no-post">
-                まだ投稿がありません
-              </p>
-            <% end %>
+              <% latest = shop.posts.order(created_at: :desc).first %>
+              <% if latest %>
+                <p class="shop-list-latest mb-0 <%= 'is-sold-out' if latest.sold_out %>">
+                  <% if latest.sold_out %>
+                    売り切れました
+                  <% else %>
+                    <%= latest.created_at.strftime("%m/%d %H:%M") %>時点の、出荷あり
+                  <% end %>
+                </p>
+              <% else %>
+                <p class="shop-list-latest mb-0 is-no-post">
+                  まだ投稿がありません
+                </p>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   <% else %>

@@ -1,0 +1,44 @@
+<div class="page-container d-flex flex-column align-items-center how-to-print">
+
+  <%= link_to how_to_path, class: "how-to-back-link mb-3" do %>
+    <i class="bi bi-arrow-left"></i> 使い方の一覧に戻る
+  <% end %>
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">登録の仕方</h2>
+  </div>
+
+  <ol class="how-to-step-list">
+    <li>
+      <span class="how-to-step-num">1</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">トップページの「あなたの店舗を登録する」を押す</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">2</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">携帯電話番号を入力して「確認コードを送信する」を押す</p>
+        <p class="how-to-step-desc">ハイフンは、あってもなくても大丈夫です</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">3</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">SMSで届いた6桁の確認コードを入力して「確認する」を押す</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">4</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">お名前を入力して「登録を完了する」を押す</p>
+        <p class="how-to-step-desc">年代・メールアドレスは、入力しなくても大丈夫です</p>
+      </div>
+    </li>
+  </ol>
+
+  <button class="btn-primary-wide tactile-press mt-4 no-print" onclick="window.print()">
+    <i class="bi bi-printer-fill me-2"></i>このページを印刷する
+  </button>
+
+</div>

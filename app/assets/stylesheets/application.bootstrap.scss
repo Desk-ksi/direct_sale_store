@@ -767,3 +767,217 @@ body {
 .shop-detail-post-schedule {
     color: var(--color-on-surface-variant);
 }
+/* ==========================================
+   how_to (使い方) 関連のスタイル
+   ========================================== */
+
+/* --- メニュー画面:サービスの目的 --- */
+.how-to-intro {
+    width: 100%;
+    background-color: var(--color-surface-container);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+}
+.how-to-intro-lead {
+    font-family: 'notoSans', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+.how-to-intro-body {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+}
+
+/* --- メニュー画面:投稿までの流れ --- */
+.how-to-flow-heading {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-on-surface-variant);
+    text-align: center;
+}
+.how-to-flow-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.how-to-flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+.how-to-flow-num {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 18px;
+}
+.how-to-flow-label {
+    font-family: 'notoSans', sans-serif;
+    font-size: 13px;
+    color: var(--color-on-surface-variant);
+    white-space: nowrap;
+}
+.how-to-flow-arrow {
+    color: var(--color-outline-variant);
+    font-size: 1.25rem;
+}
+
+/* --- メニュー画面:ポスターの案内 --- */
+.how-to-poster-notice {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background-color: var(--color-tertiary-container);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+}
+.how-to-poster-notice-icon {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    color: var(--color-on-tertiary-container);
+    margin-top: 0.1rem;
+}
+.how-to-poster-notice-body {
+    font-family: 'notoSans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-on-tertiary-container);
+}
+
+/* --- 各説明ページへの、リンクカード(complete.html.erbと共通) --- */
+.guide-link-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    color: var(--color-on-background);
+}
+.guide-link-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-radius: 50%;
+    font-size: 1.25rem;
+}
+.guide-link-desc {
+    font-family: 'notoSans', sans-serif;
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+}
+.guide-link-arrow {
+    margin-left: auto;
+    color: var(--color-on-surface-variant);
+}
+
+/* --- 個別ページ共通:一覧に戻るリンク --- */
+.how-to-back-link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: 'notoSans', sans-serif;
+    font-size: 14px;
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+/* --- 個別ページ共通:手順のリスト --- */
+.how-to-step-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.how-to-step-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+.how-to-step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 16px;
+}
+.how-to-step-title {
+    font-family: 'notoSans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-on-background);
+    margin-bottom: 0.25rem;
+}
+.how-to-step-desc {
+    font-family: 'notoSans', sans-serif;
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 0;
+}
+
+/* --- ポスター(promote_how_to)専用 --- */
+.promote-poster {
+    width: 100%;
+    background-color: var(--color-surface-container);
+    border: 2px solid var(--color-primary);
+    border-radius: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+.promote-poster-title {
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 0.5rem;
+}
+.promote-poster-main {
+    font-family: 'beVietnamPro', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0;
+}
+.promote-poster-body {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    color: var(--color-on-surface-variant);
+    line-height: 1.8;
+}
+
+/* --- 印刷用のスタイル --- */
+@media print {
+    .app-header, .bottom-nav, .app-footer, .no-print, .how-to-back-link {
+        display: none !important;
+    }
+}

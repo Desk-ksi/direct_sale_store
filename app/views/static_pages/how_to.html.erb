@@ -1,0 +1,101 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">使い方</h2>
+  </div>
+
+  <!-- サービスの目的 -->
+  <div class="how-to-intro mb-4">
+    <p class="how-to-intro-lead mb-2">
+      店舗を登録して、今日の出荷を投稿するアプリです。
+    </p>
+    <p class="how-to-intro-body mb-0">
+      その出荷をお客さんに見てもらい、今日の購買計画に入れてもらいましょう。
+    </p>
+  </div>
+
+  <!-- 投稿までの流れ -->
+  <div class="w-100 mb-4">
+    <p class="how-to-flow-heading mb-3">投稿ができるようになるまでの流れは以下になります</p>
+    <div class="how-to-flow-list">
+      <div class="how-to-flow-step">
+        <span class="how-to-flow-num">1</span>
+        <span class="how-to-flow-label">登録する</span>
+      </div>
+      <i class="bi bi-chevron-right how-to-flow-arrow"></i>
+      <div class="how-to-flow-step">
+        <span class="how-to-flow-num">2</span>
+        <span class="how-to-flow-label">店舗登録</span>
+      </div>
+      <i class="bi bi-chevron-right how-to-flow-arrow"></i>
+      <div class="how-to-flow-step">
+        <span class="how-to-flow-num">3</span>
+        <span class="how-to-flow-label">投稿する</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ポスターの案内 -->
+  <div class="how-to-poster-notice mb-4">
+    <i class="bi bi-printer-fill how-to-poster-notice-icon"></i>
+    <p class="how-to-poster-notice-body mb-0">
+      投稿ができたら、この直売所がアプリで今日の出荷状況を投稿していることを、
+      お客さんに知ってもらうために、<strong>ポスターを貼りましょう。</strong>
+    </p>
+  </div>
+
+  <p class="font-body-md text-secondary text-center mb-3">
+    各登録の仕方は以下の説明を確認してください。<br>
+    また必要に応じて印刷して確認してください。
+  </p>
+
+  <!-- 各説明ページへのリンク -->
+  <div class="w-100 d-flex flex-column gap-3">
+
+    <%= link_to how_to_user_path, class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">登録の仕方</span>
+        <span class="guide-link-desc">電話番号で簡単に登録できます</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+    <%= link_to how_to_shop_path, class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-shop"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">店舗登録の仕方</span>
+        <span class="guide-link-desc">写真と場所を登録するだけです</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+    <%= link_to how_to_post_path, class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-camera-fill"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">投稿の仕方</span>
+        <span class="guide-link-desc">写真を1枚撮るだけです</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+    <%= link_to how_to_promote_path, class: "guide-link-card tactile-press" do %>
+      <div class="guide-link-icon">
+        <i class="bi bi-printer-fill"></i>
+      </div>
+      <div class="d-flex flex-column text-start">
+        <span class="font-label-lg mb-1">お客さんへの伝え方</span>
+        <span class="guide-link-desc">ポスターを印刷できます</span>
+      </div>
+      <i class="bi bi-chevron-right guide-link-arrow"></i>
+    <% end %>
+
+  </div>
+
+</div>

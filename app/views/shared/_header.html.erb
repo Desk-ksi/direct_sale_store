@@ -2,13 +2,16 @@
 <header class="app-header shadow-sm">
   <div class="container-fluid" style="max-width: 800px;">
     <div class="d-flex justify-content-between align-items-center" style="height: 64px; padding-left: 20px; padding-right: 20px;">
-      <div class="d-flex align-items-center gap-3" style="color: var(--color-primary);">
-        <i class="bi bi-shop fs-2"></i>
-        <h1 class="font-headline-lg-mobile mb-0">あなたの町の直売所</h1>
+      <%= link_to root_path, class: "d-flex align-items-center gap-3 header-logo-link" do %>
+        <i class="bi bi-shop fs-2" style="color: var(--color-primary);"></i>
+        <h1 class="font-headline-lg-mobile mb-0" style="color: var(--color-primary);">あなたの町の直売所</h1>
+      <% end %>
+      <div class="d-flex align-items-center gap-2">
+        <%= link_to "最初の画面に戻る", root_path, class: "header-back-link" %>
+        <button aria-label="マイページ" class="btn-icon-circular">
+          <i class="bi bi-person-circle fs-2"></i>
+        </button>
       </div>
-      <button aria-label="マイページ" class="btn-icon-circular">
-        <i class="bi bi-person-circle fs-2"></i>
-      </button>
     </div>
   </div>
 </header>

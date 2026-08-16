@@ -195,6 +195,21 @@ body {
     border-top: 1px solid var(--color-outline-variant);
     margin-bottom: 80px;
 }
+.header-logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+.header-back-link {
+    font-family: 'notoSans', sans-serif;
+    font-size: 13px;
+    color: var(--color-on-surface-variant);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.header-back-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
 .footer-link {
     color: var(--color-secondary);
     opacity: 0.8;

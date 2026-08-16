@@ -20,6 +20,24 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+  const imageShopPhoto = document.getElementById('photo-preview-img');
+  const imageShopFiled = document.getElementById('shop_image');
+  const imageShopLabel = document.getElementById('photo-upload-label');
+  if (imageShopPhoto) {
+    imageShopFiled.addEventListener('change', function() {
+      const file = imageShopFiled.files[0];
+      const reader = new FileReader();
+      reader.onload = function() {
+        imageShopPhoto.src = reader.result;
+        imageShopPhoto.classList.remove('d-none');
+        imageShopLabel.textContent = "変更する場合は再度押してください"
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
   const imagePostPhoto = document.getElementById('post-photo-preview-img');
   const imagePostFiled = document.getElementById('post_image');
   const imagePostLabel = document.getElementById('post-photo-upload-label');

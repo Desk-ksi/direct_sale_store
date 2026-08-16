@@ -1,0 +1,59 @@
+<div class="page-container d-flex flex-column align-items-center how-to-print">
+
+  <%= link_to how_to_path, class: "how-to-back-link mb-3" do %>
+    <i class="bi bi-arrow-left"></i> 使い方の一覧に戻る
+  <% end %>
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">店舗登録の仕方</h2>
+  </div>
+
+  <!-- 事前の心構え -->
+  <div class="how-to-notice mb-4">
+    <i class="bi bi-info-circle-fill how-to-notice-icon"></i>
+    <p class="how-to-notice-body mb-0">
+      店舗登録は、<strong>登録する直売所に実際に行ってから</strong>、
+      行ってください。お店の場所を正しく登録するために必要です。
+    </p>
+  </div>
+
+  <ol class="how-to-step-list">
+    <li>
+      <span class="how-to-step-num">1</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">お店の写真を撮って選ぶ</p>
+        <p class="how-to-step-desc">カメラのマークをタップすると、撮影・選択できます</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">2</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">お店の前で「お店の前で、このボタンを押してください」を押す</p>
+        <p class="how-to-step-desc">お店の場所が、自動で登録されます</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">3</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">お店の名前を入力する</p>
+      </div>
+    </li>
+    <li>
+      <span class="how-to-step-num">4</span>
+      <div class="how-to-step-body">
+        <p class="how-to-step-title">「この内容で登録する」を押す</p>
+        <p class="how-to-step-desc">
+          そのほかのお店の情報も登録できます
+          こだわり・価格帯・販売時期・営業時間・出荷頻度は、
+          「さらに詳しく入力する」から、後からでも入力できます
+          ぜひ詳細な情報をお客さんに知ってもらいましょう
+        </p>
+      </div>
+    </li>
+  </ol>
+
+  <button class="btn-primary-wide tactile-press mt-4 no-print" onclick="window.print()">
+    <i class="bi bi-printer-fill me-2"></i>このページを印刷する
+  </button>
+
+</div>

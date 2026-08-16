@@ -1,0 +1,42 @@
+<div class="page-container d-flex flex-column align-items-center how-to-print">
+
+  <%= link_to how_to_path, class: "how-to-back-link mb-3" do %>
+    <i class="bi bi-arrow-left"></i> 使い方の一覧に戻る
+  <% end %>
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">お客さんへの伝え方</h2>
+    <p class="font-body-md text-secondary mb-0">
+      このページを印刷して、お店に貼っておくと、お客さんに伝わりやすくなります。
+    </p>
+  </div>
+
+  <!-- ポスター本体 -->
+  <div class="promote-poster">
+    <div class="promote-poster-icon">
+      <i class="bi bi-camera-fill"></i>
+    </div>
+
+    <p class="promote-poster-eyebrow">この直売所は</p>
+    <h3 class="promote-poster-title">今日の出荷状況を<br>お知らせしています</h3>
+
+    <div class="promote-poster-divider"></div>
+
+    <p class="promote-poster-body">
+      「あなたの町の直売所」アプリで、<br>
+      今、何が並んでいるかを写真でご覧いただけます。
+    </p>
+
+    <div class="promote-poster-cta">
+      <i class="bi bi-phone"></i>
+      <span>スマホで「あなたの町の直売所」を検索</span>
+    </div>
+
+    <p class="promote-poster-footer">今日も新鮮な野菜をお届けします</p>
+  </div>
+
+  <button class="btn-primary-wide tactile-press mt-4 no-print" onclick="window.print()">
+    <i class="bi bi-printer-fill me-2"></i>このポスターを印刷する
+  </button>
+
+</div>

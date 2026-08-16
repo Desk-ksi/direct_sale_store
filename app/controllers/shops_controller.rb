@@ -1,9 +1,40 @@
 class ShopsController < ApplicationController
-  skip_before_action :require_login, only: :index
-  skip_before_action :require_login_has_shop, only: :index
+  skip_before_action :require_login, only: %i{ index index_distance }
+  skip_before_action :require_login_has_shop, only: %i{ index index_distance }
   def index
     @shops = Shop.includes(:posts)
   end
+  # 距離計測メソッド　参考：https://qiita.com/Fu990628/items/4b673a6fea74570dcfd8
+  def index_distance
+    x1 = params[:current_latitude].to_f * Math::PI / 180
+    y1 = params[:current_longitude].to_f * Math::PI / 180
+
+    distance = []
+    Shop.all.each do |t|
+      x2 = t.latitude * Math::PI / 180
+      y2 = t.longitude * Math::PI / 180
+
+      diff_y = (y1 - y2).abs
+      
+      calc1 = Math.cos(x2) * Math.sin(diff_y)
+      calc2 = Math.cos(x1) * Math.sin(x2) - Math.sin(x1) * Math.cos(x2) * Math.cos(diff_y)
+      
+      numerator = Math.sqrt(calc1 ** 2 + calc2 ** 2)
+      denominator = Math.sin(x1) * Math.sin(x2) + Math.cos(x1) * Math.cos(x2) * Math.cos(diff_y)
+      degree = Math.atan2(numerator, denominator)
+
+      a = 6378.137
+      result = degree * a
+
+      distance.push( [result, t] )
+    end
+    # 配列で取得した距離と店舗の配列を距離順に並び替えて、インスタンス変数にして、viewで使用する
+    # 現状配列には、距離と店舗オブジェクトがセットになっている
+    # sortで並び変えはできるが、距離と店舗どちらで並び替えるかを定義しないといけない
+    # |x| x[0] は配列の最初の値を元にsortすることを示している
+    @distance = distance.sort_by{|x| x[0]}
+  end
+
   def new
     @shop = Shop.new
   end

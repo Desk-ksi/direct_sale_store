@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :shops, only: %i{ new create index } do
     collection do
       get :complete
+      get :index_distance
     end
   end
   resources :posts, only: %i{ new create }

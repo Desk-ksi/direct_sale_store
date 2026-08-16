@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "static_pages#top"
+  get "how_to", to: "static_pages#how_to"
+  get "how_to/user", to: "static_pages#user_how_to"
+  get "how_to/shop", to:"static_pages#shop_how_to"
+  get "how_to/post", to:"static_pages#post_how_to"
+  get "how_to/promote", to:"static_pages#promote_how_to"
   resource :login, only: %i{ new create } do
     collection do
       get :confirm

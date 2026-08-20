@@ -45,6 +45,9 @@ gem "carrierwave", "2.2.2"
 # SMS認証を外部APIを使用して、利用できるようにするためのtwilioのGem
 gem 'twilio-ruby', '~> 7.10.7'
 
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

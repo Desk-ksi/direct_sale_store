@@ -14,6 +14,7 @@
   </button>
 
   <!-- 店舗一覧 -->
+  <%= paginate @shops, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
   <% if @shops.present? %>
     <div class="w-100 d-flex flex-column gap-3">
       <% @shops.each do |shop| %>
@@ -48,5 +49,6 @@
       まだ登録された直売所がありません。
     </p>
   <% end %>
+  <%= paginate @shops, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
 
 </div>

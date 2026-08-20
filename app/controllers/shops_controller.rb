@@ -2,7 +2,8 @@ class ShopsController < ApplicationController
   skip_before_action :require_login, only: %i{ index index_distance show }
   skip_before_action :require_login_has_shop, only: %i{ index index_distance show }
   def index
-    @shops = Shop.includes(:posts)
+    # kaminariでページネーションを実装。20件ごとの設定
+    @shops = Shop.includes(:posts).page(params[:page])
   end
   # 距離計測メソッド　参考：https://qiita.com/Fu990628/items/4b673a6fea74570dcfd8
   def index_distance
@@ -32,7 +33,9 @@ class ShopsController < ApplicationController
     # 現状配列には、距離と店舗オブジェクトがセットになっている
     # sortで並び変えはできるが、距離と店舗どちらで並び替えるかを定義しないといけない
     # |x| x[0] は配列の最初の値を元にsortすることを示している
-    @distance = distance.sort_by{|x| x[0]}
+    distance = distance.sort_by{|x| x[0]}
+    # 配列にkaminariでページネーションをするときは以下の形になる
+    @distance = Kaminari.paginate_array(distance).page(params[:page])
   end
 
   def new

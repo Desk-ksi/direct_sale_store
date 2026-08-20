@@ -6,7 +6,7 @@
       現在地から近い順に並んでいます。
     </p>
   </div>
-
+  <%= paginate @distance, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
   <% if @distance.present? %>
     <div class="w-100 d-flex flex-column gap-3">
       <% @distance.each do |result, shop| %>
@@ -44,5 +44,6 @@
       まだ登録された直売所がありません。
     </p>
   <% end %>
+  <%= paginate @distance, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
 
 </div>

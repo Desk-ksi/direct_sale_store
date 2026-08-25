@@ -4,11 +4,23 @@
   <div class="w-100 hero-image-wrapper shadow-sm mb-4">
     <%= image_tag "top.jpg", alt: "直売所に並ぶ、新鮮な野菜と果物" %>
     <div class="hero-image-overlay"></div>
-    <p class="hero-image-caption">今日は何があるかな、を届けよう</p>
+    <div class="hero-image-text">
+      <p class="hero-image-caption">今日は何があるかな、を届けよう</p>
+      <p class="hero-image-desc mb-1">
+        このアプリは、直売所の「今日の出荷」を写真だけで伝えることができるアプリです。
+      </p>
+      <p class="hero-image-desc mb-1">
+        直売所を営んでいる皆さん、店を登録して、<br>
+        今日何を出したかをお客さんに伝えませんか？
+      </p>
+      <p class="hero-image-desc mb-0">
+        お客さんは出荷状況を見て、<br>
+        今日の食卓に新鮮な野菜を並べてみませんか？
+      </p>
+    </div>
   </div>
-
   <!-- Primary Action Area (Producers) -->
-  <div class="w-100  d-flex flex-column gap-3 mb-4">
+  <div class="w-100 d-flex flex-column gap-3 mb-4">
     <!-- Register Shop Button -->
     <%= link_to new_login_path, class:"w-100 btn-primary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press" do %>
       <div class="icon-wrapper p-3 d-flex align-items-center justify-content-center">

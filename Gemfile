@@ -43,7 +43,7 @@ gem "thruster", require: false
 gem "carrierwave", "2.2.2"
 
 # SMS認証を外部APIを使用して、利用できるようにするためのtwilioのGem
-gem 'twilio-ruby', '~> 7.10.7'
+gem 'twilio-ruby', '~> 7.11.1'
 
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'

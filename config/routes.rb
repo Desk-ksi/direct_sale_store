@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     collection do
       get :complete
       get :index_distance
+      get :my_shops
     end
   end
   resources :posts, only: %i{ new create }

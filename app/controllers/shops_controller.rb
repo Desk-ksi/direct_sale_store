@@ -52,9 +52,14 @@ class ShopsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def complete;end
   def show
     @shop = Shop.find_by(id: params[:id])
     @posts = @shop.posts
+  end
+  def my_shops
+    @user = current_user
+    @shops = @user.shops
   end
 
 

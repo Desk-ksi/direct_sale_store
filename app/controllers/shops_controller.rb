@@ -61,8 +61,9 @@ class ShopsController < ApplicationController
     @user = current_user
     @shops = @user.shops.page(params[:page])
   end
-  
-
+  def edit
+    @shop = Shop.find(params[:id])
+  end
 
   private
 

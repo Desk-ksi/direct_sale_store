@@ -59,8 +59,9 @@ class ShopsController < ApplicationController
   end
   def my_shops
     @user = current_user
-    @shops = @user.shops
+    @shops = @user.shops.page(params[:page])
   end
+  
 
 
   private

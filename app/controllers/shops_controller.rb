@@ -64,8 +64,17 @@ class ShopsController < ApplicationController
   def edit
     @shop = Shop.find(params[:id])
   end
+  def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to my_shops_shops_path, success: '更新に成功しました'
+    else
+      flash.now[:danger] = '更新できませんでした'
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
-  private
+      private
 
   def shop_params
     params.require(:shop).permit(:shop_image, :name, :latitude, :longitude, :kodawari, :price, :season, :timing, :business_hours)

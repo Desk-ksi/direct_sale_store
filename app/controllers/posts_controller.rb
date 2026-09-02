@@ -19,6 +19,38 @@ class PostsController < ApplicationController
     @user = current_user
     @shops = @user.shops.page(params[:page])
   end
+  def index
+    @shop = current_user.shops.find(params[:shop_id])
+    @posts = @shop.posts.page(params[:page])
+  end
+  def show
+    @post = Post.find(params[:id])
+  end
+  def edit
+    shop = current_user.shops.find(params[:shop_id])
+    @post = shop.posts.find(params[:id])
+  end
+  def update
+    shop = current_user.shops.find(params[:shop_id])
+    @post = shop.posts.find(params[:id])
+    if @post.update(post_params)
+      redirect_to shop_posts_path(shop), success: '投稿の変更が完了しました'
+    else
+      flash.now[:danger] = '投稿の変更に失敗しました'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  def destroy
+    shop = current_user.shops.find(params[:shop_id])
+    @post = shop.posts.find(params[:id])
+    if @post.destroy
+      redirect_to shop_posts_path(shop), success: '投稿の削除が完了しました'
+    else
+      @posts = shop.posts.page(params[:page])
+      flash.now[:danger] = '投稿の削除に失敗しました'
+      render :index, status: :see_other
+    end
+  end
 
   private
 

@@ -12,4 +12,17 @@ class Post < ApplicationRecord
   has_many :user_post_likes, dependent: :destroy
   # 中間テーブルを介して、postをお気に入りにしたuserを参照するときのメソッドを定義。sourceは何を参照するかを明示
   has_many :favorite_users, through: :user_post_likes, source: :user
+
+  # own?メソッドは、ログインしているユーザーが投稿の所有者かどうかを判定するためのメソッド。
+  # 引数としてユーザーオブジェクト（current_user）を受け取り、そのユーザーが投稿の所有者であるかどうかを確認します。
+  def own?(user)
+    # postに関するところで使用する。そのpostがどのshopが持っているかは、
+    # postモデルのアソシエーションでbelongs_to :shopがあるため、情報が入っている
+    # その選択したpostを持っているshopからuser情報を取るには、中間テーブルを介して、user_idが存在しているかを確認する
+    # このshopをcurrent_userは持っているかは、shopに関する中間テーブルに、shopが持っているuser_idとcuttent_userのuser_idが揃っているかを確認する
+    # そうすることで、この投稿を持っているshopを持っているuserかを確認することができる
+    shop.user_shops.exists?(user_id: user&.id)
+  end
+
+    
 end

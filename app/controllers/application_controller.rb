@@ -20,9 +20,15 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    redirect_to new_login_path, danger: "ログイン後に操作できます" unless logged_in?
+    unless logged_in?
+      session[:request_path] = request.path
+      redirect_to new_login_path, danger: "ログイン後に操作できます"
+    end
   end
   def require_login_has_shop
-    redirect_to new_shop_path, danger: "店舗登録後に操作できます" unless logged_in_has_shop?
+    unless logged_in_has_shop?
+      session[:request_path] = request.path
+      redirect_to new_shop_path, danger: "店舗登録後に操作できます"
+    end
   end
 end

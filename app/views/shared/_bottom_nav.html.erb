@@ -1,5 +1,9 @@
 <!-- BottomNavBar (Semantic Shell Context: Home/Dashboard) -->
 <nav class="fixed-bottom bottom-nav d-flex justify-content-around align-items-center pb-2 px-2">
+  <%= link_to shops_path, class: "nav-item-btn d-flex flex-column align-items-center justify-content-center px-3" do %>
+    <i class="bi bi-search fs-4 mb-1"></i>
+    <span class="text-sm-label">店舗検索</span>
+  <% end %>
   <%= link_to my_shops_shops_path, class:"nav-item-btn d-flex flex-column align-items-center justify-content-center" do %>
     <i class="bi bi-plus-square-dotted fs-4 mb-1"></i>
     <span class="text-sm-label">店舗編集</span>
@@ -7,10 +11,6 @@
   <%= link_to my_shops_path, class: "nav-item-btn d-flex flex-column align-items-center justify-content-center" do %>
     <i class="bi bi-truck fs-4 mb-1"></i>
     <span class="text-sm-label">出荷投稿</span>
-  <% end %>
-  <%= link_to shops_path, class: "nav-item-btn d-flex flex-column align-items-center justify-content-center px-3" do %>
-    <i class="bi bi-search fs-4 mb-1"></i>
-    <span class="text-sm-label">店舗検索</span>
   <% end %>
   <%= link_to how_to_path, class:"nav-item-btn d-flex flex-column align-items-center justify-content-center" do %>
     <i class="bi bi-question-circle-fill fs-4 mb-1"></i>

@@ -1,0 +1,33 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">今日の状況を投稿する店舗を選択する</h2>
+    <p class="font-body-md text-secondary mb-0">
+      今日の状況を投稿する店舗のボタンを押してください
+    </p>
+  </div>
+
+  <!-- 店舗一覧 -->
+  <%= paginate @shops, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+
+  <div class="w-100 d-flex flex-column gap-3">
+    <% @shops.each do |shop| %>
+      <%= link_to new_shop_post_path(shop), class: "shop-list-card-link" do %>
+        <div class="shop-list-card">
+          <div class="shop-list-image">
+            <%= image_tag shop.shop_image.url, alt: "#{shop.name}の外観" %>
+          </div>
+          <div class="shop-list-body">
+            <p class="shop-list-name mb-1"><%= shop.name %></p>
+            <p class="shop-list-latest mb-0">
+              <i class="bi bi-pencil-square"></i> タップして投稿する
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= paginate @shops, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+
+</div>

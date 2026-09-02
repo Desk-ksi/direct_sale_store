@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get :index_distance
       get :my_shops
     end
+    resources :posts, only: %i{ new create } 
   end
-  resources :posts, only: %i{ new create }
+  get "my_shops", to: "posts#my_shops"
 end

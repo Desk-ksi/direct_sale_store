@@ -7,7 +7,7 @@
     </p>
   </div>
 
-  <%= form_with model: @post, url: posts_path, method: :post, local: true, class: "w-100 d-flex flex-column gap-4" do |f| %>
+  <%= form_with model: @post, url: shop_posts_path(@shop), method: :post, local: true, class: "w-100 d-flex flex-column gap-4" do |f| %>
     <% if @post.errors.any? %>
       <div class="alert-box" role="alert">
         <% @post.errors.full_messages.each do |message| %>

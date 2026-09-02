@@ -3,7 +3,7 @@ class ShopsController < ApplicationController
   skip_before_action :require_login_has_shop, only: %i{ index index_distance show }
   def index
     # kaminariでページネーションを実装。20件ごとの設定
-    @shops = Shop.includes(:posts).page(params[:page])
+    @shops = Shop.includes(:posts).page(params[:page]).order(created_at: :desc)
   end
   # 距離計測メソッド　参考：https://qiita.com/Fu990628/items/4b673a6fea74570dcfd8
   def index_distance

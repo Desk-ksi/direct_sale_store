@@ -95,5 +95,9 @@
 
     <%= f.submit "この内容で保存する", class: "btn-primary-wide tactile-press" %>
   <% end %>
-
+    <%= link_to shop_path(@shop),
+        class: "btn-danger-outline tactile-press mt-3",
+        data: { turbo_method: :delete, turbo_confirm: "「#{@shop.name}」を削除します。よろしいですか？" } do %>
+    <i class="bi bi-trash3 me-2"></i>この店舗を削除する
+  <% end %>
 </div>

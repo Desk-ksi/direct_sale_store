@@ -1107,3 +1107,41 @@ body {
         background-color: #000;
     }
 }
+.shop-list-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+}
+.shop-delete-btn {
+    flex-shrink: 0;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1rem;
+    color: var(--color-error);
+    font-size: 1.1rem;
+}
+.shop-delete-btn:hover {
+    background-color: var(--color-error-container);
+}
+.btn-danger-outline {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--color-error);
+    border-radius: 1.5rem;
+    color: var(--color-error);
+    min-height: 56px;
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+.btn-danger-outline:hover {
+    background-color: var(--color-error-container);
+}

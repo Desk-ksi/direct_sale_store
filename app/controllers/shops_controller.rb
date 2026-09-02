@@ -75,6 +75,17 @@ class ShopsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  def destroy
+    @shop = Shop.find(params[:id])
+    if @shop.destroy
+      redirect_to root_path, success: '店舗の削除が完了しました'
+    else
+      @user = current_user
+      @shops = @user.shops.page(params[:page])
+      flash.now[:danger] = '店舗の削除に失敗しました'
+      render :my_shops, status: :see_other
+    end
+  end
 
       private
 

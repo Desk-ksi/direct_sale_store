@@ -10,7 +10,7 @@
     <h2 class="font-headline-lg-mobile mb-2"><%= @shop.name %></h2>
   </div>
 
-  <!-- 店舗の基本情報 -->
+    <!-- 店舗の基本情報 -->
   <section class="w-100 shop-detail-info mb-4">
     <% if @shop.business_hours.present? %>
       <div class="shop-detail-info-row">
@@ -41,8 +41,14 @@
     <% end %>
   </section>
 
+  <!-- 地図で確認する -->
+  <%= link_to "https://www.google.com/maps?q=#{@shop.latitude},#{@shop.longitude}",
+        class: "btn-map-link w-100 tactile-press mb-4",
+        target: "_blank",
+        rel: "noopener" do %>
+    <i class="bi bi-geo-alt-fill me-2"></i>店舗の位置を地図で確認する
+  <% end %>
   <div class="w-100 custom-divider my-2"></div>
-
   <!-- 出荷状況の一覧 -->
   <section class="w-100 mt-4">
     <h3 class="recent-posts-heading">

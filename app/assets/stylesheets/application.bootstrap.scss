@@ -1212,3 +1212,20 @@ body {
     text-decoration: none;
     color: inherit;
 }
+.btn-map-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 1.25rem;
+    min-height: 56px;
+    color: var(--color-primary);
+    font-family: 'notoSans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.btn-map-link:hover {
+    background-color: var(--color-primary-container);
+}

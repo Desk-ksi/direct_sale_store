@@ -1,0 +1,67 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <p class="post-detail-shop-name mb-1"><%= @post.shop.name %></p>
+    <p class="font-body-md text-secondary mb-0">
+      <%= @post.created_at.strftime("%m/%d %H:%M") %>時点の出荷状況
+    </p>
+  </div>
+
+  <!-- 投稿写真 -->
+  <div class="w-100 post-detail-image mb-4">
+    <% if @post.post_images.first %>
+      <%= image_tag @post.post_images.first.post_image.url, alt: "#{@post.shop.name}の出荷写真" %>
+    <% end %>
+    <% if @post.sold_out %>
+      <span class="post-detail-sold-out-badge">売り切れ</span>
+    <% end %>
+  </div>
+
+  <!-- 詳細情報 -->
+  <div class="w-100 post-detail-info mb-4">
+    <% if @post.merchandise.present? %>
+      <div class="post-detail-info-row">
+        <span class="post-detail-info-label">今日の商品</span>
+        <p class="post-detail-info-value"><%= @post.merchandise %></p>
+      </div>
+    <% end %>
+    <% if @post.top_merchandise.present? %>
+      <div class="post-detail-info-row">
+        <span class="post-detail-info-label">今日の一押し</span>
+        <p class="post-detail-info-value"><%= @post.top_merchandise %></p>
+      </div>
+    <% end %>
+    <% if @post.comment.present? %>
+      <div class="post-detail-info-row">
+        <span class="post-detail-info-label">コメント</span>
+        <p class="post-detail-info-value"><%= @post.comment %></p>
+      </div>
+    <% end %>
+    <% if @post.schedule.present? %>
+      <div class="post-detail-info-row">
+        <span class="post-detail-info-label">明日の予定</span>
+        <p class="post-detail-info-value"><%= @post.schedule %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- 店舗詳細に戻るリンク -->
+  <%= link_to shop_path(@post.shop), class: "btn-secondary-wide tactile-press mb-3" do %>
+    <i class="bi bi-arrow-left me-2"></i>店舗の詳細に戻る
+  <% end %>
+
+  <!-- 持ち主だけに見える、編集・削除の導線 -->
+  <% if @post.own?(current_user) %>
+    <div class="w-100 d-flex flex-column gap-3">
+      <%= link_to edit_shop_post_path(@post.shop, @post), class: "btn-primary-wide tactile-press" do %>
+        <i class="bi bi-pencil-square me-2"></i>この投稿を編集する
+      <% end %>
+      <%= link_to shop_post_path(@post.shop, @post),
+            class: "btn-danger-outline tactile-press",
+            data: { turbo_method: :delete, turbo_confirm: "この投稿を削除します。よろしいですか？" } do %>
+        <i class="bi bi-trash3 me-2"></i>この投稿を削除する
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

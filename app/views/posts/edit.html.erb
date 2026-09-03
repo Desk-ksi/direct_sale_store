@@ -1,0 +1,81 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">投稿を編集する</h2>
+    <p class="font-body-md text-secondary mb-0">
+      変更したい項目だけ書き換えてください。<br>
+      変更が不要な項目はそのままで大丈夫です。
+    </p>
+  </div>
+
+  <%= form_with model: @post, url: shop_post_path(@post.shop, @post), local: true, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <% if @post.errors.any? %>
+      <div class="alert-box" role="alert">
+        <% @post.errors.full_messages.each do |message| %>
+          <p class="mb-0"><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- 投稿写真(1枚) -->
+    <div class="w-100">
+      <span class="font-label-lg mb-2 d-block">今日の写真</span>
+      <%= f.fields_for :post_images do |image_form| %>
+        <label for="post_image" class="photo-upload-card">
+          <% existing_image = @post.post_images.first %>
+          <img id="post-photo-preview-img"
+               class="photo-preview-img"
+               src="<%= existing_image&.post_image&.url %>"
+               alt="現在の出荷写真">
+          <span id="post-photo-upload-label" class="photo-upload-label">タップして写真を変更する</span>
+          <%= image_form.file_field :post_image,
+                id: "post_image",
+                class: "d-none",
+                accept: "image/*",
+                capture: "environment" %>
+        </label>
+      <% end %>
+    </div>
+
+    <div class="w-100">
+      <label for="post_merchandise" class="font-label-lg mb-2 d-block">今日の商品</label>
+      <%= f.text_field :merchandise,
+            id: "post_merchandise",
+            class: "form-input-lg",
+            value: @post.merchandise %>
+    </div>
+
+    <div class="w-100">
+      <label for="post_top_merchandise" class="font-label-lg mb-2 d-block">今日の一押し</label>
+      <%= f.text_field :top_merchandise,
+            id: "post_top_merchandise",
+            class: "form-input-lg",
+            value: @post.top_merchandise %>
+    </div>
+
+    <div class="w-100">
+      <label for="post_comment" class="font-label-lg mb-2 d-block">コメント</label>
+      <%= f.text_area :comment,
+            id: "post_comment",
+            class: "form-input-lg form-textarea",
+            rows: 3,
+            value: @post.comment %>
+    </div>
+
+    <div class="w-100">
+      <label for="post_schedule" class="font-label-lg mb-2 d-block">明日の予定</label>
+      <%= f.text_field :schedule,
+            id: "post_schedule",
+            class: "form-input-lg",
+            value: @post.schedule %>
+    </div>
+
+    <%= f.submit "この内容で保存する", class: "btn-primary-wide tactile-press" %>
+    <%= link_to shop_post_path(@post.shop, @post),
+          class: "btn-danger-outline tactile-press",
+          data: { turbo_method: :delete, turbo_confirm: "この投稿を削除します。よろしいですか？" } do %>
+      <i class="bi bi-trash3 me-2"></i>この投稿を削除する
+    <% end %>
+  <% end %>
+
+</div>

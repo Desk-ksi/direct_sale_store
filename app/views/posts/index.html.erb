@@ -1,0 +1,48 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2"><%= @shop.name %>の投稿一覧</h2>
+    <p class="font-body-md text-secondary mb-0">
+      編集・削除したい投稿を選んでください
+    </p>
+  </div>
+
+  <%= link_to new_shop_post_path(@shop), class: "btn-primary-wide tactile-press mb-4" do %>
+    <i class="bi bi-camera-fill me-2"></i>新しく投稿する
+  <% end %>
+
+  <!-- 投稿一覧 -->
+  <%= paginate @posts, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+
+  <% if @posts.present? %>
+    <div class="w-100 d-flex flex-column gap-3">
+      <% @posts.each do |post| %>
+        <%= link_to shop_post_path(@shop, post), class: "recent-post-card-link" do %>
+          <div class="recent-post-card <%= 'is-sold-out' if post.sold_out %>">
+            <div class="recent-post-image">
+              <% if post.post_images.first %>
+                <%= image_tag post.post_images.first.post_image.url, alt: "#{@shop.name}の出荷写真" %>
+              <% end %>
+              <% if post.sold_out %>
+                <span class="recent-post-sold-out-badge">売り切れ</span>
+              <% end %>
+            </div>
+            <div class="recent-post-body">
+              <% if post.merchandise.present? %>
+                <p class="recent-post-merchandise mb-1"><%= post.merchandise %></p>
+              <% end %>
+              <p class="recent-post-time mb-0"><%= post.created_at.strftime("%m/%d %H:%M") %>時点</p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="font-body-md text-secondary text-center">
+      まだ投稿がありません
+    </p>
+  <% end %>
+
+  <%= paginate @posts, theme: 'bootstrap-5', pagination_class: "pagination-sm flex-wrap justify-content-center", nav_class: "d-inline-block" %>
+
+</div>

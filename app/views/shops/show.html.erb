@@ -52,31 +52,33 @@
     <% if @posts.present? %>
       <div class="d-flex flex-column gap-3">
         <% @posts.order(created_at: :desc).each do |post| %>
-          <div class="shop-detail-post-card <%= 'is-sold-out' if post.sold_out %>">
-            <div class="shop-detail-post-image">
-              <% if post.post_images.first %>
-                <%= image_tag post.post_images.first.post_image.url, alt: "#{@shop.name}の出荷写真" %>
-              <% end %>
-              <% if post.sold_out %>
-                <span class="recent-post-sold-out-badge">売り切れ</span>
-              <% end %>
+          <%= link_to shop_post_path(@shop, post), class: "shop-detail-post-card-link" do %>
+            <div class="shop-detail-post-card <%= 'is-sold-out' if post.sold_out %>">
+              <div class="shop-detail-post-image">
+                <% if post.post_images.first %>
+                  <%= image_tag post.post_images.first.post_image.url, alt: "#{@shop.name}の出荷写真" %>
+                <% end %>
+                <% if post.sold_out %>
+                  <span class="recent-post-sold-out-badge">売り切れ</span>
+                <% end %>
+              </div>
+              <div class="shop-detail-post-body">
+                <p class="shop-detail-post-time mb-2"><%= post.created_at.strftime("%m/%d %H:%M") %>時点</p>
+                <% if post.merchandise.present? %>
+                  <p class="shop-detail-post-line mb-1"><strong>今日の商品:</strong> <%= post.merchandise %></p>
+                <% end %>
+                <% if post.top_merchandise.present? %>
+                  <p class="shop-detail-post-line mb-1"><strong>今日の一押し:</strong> <%= post.top_merchandise %></p>
+                <% end %>
+                <% if post.comment.present? %>
+                  <p class="shop-detail-post-line mb-1"><%= post.comment %></p>
+                <% end %>
+                <% if post.schedule.present? %>
+                  <p class="shop-detail-post-line mb-0 shop-detail-post-schedule"><i class="bi bi-arrow-right-short"></i><%= post.schedule %></p>
+                <% end %>
+              </div>
             </div>
-            <div class="shop-detail-post-body">
-              <p class="shop-detail-post-time mb-2"><%= post.created_at.strftime("%m/%d %H:%M") %>時点</p>
-              <% if post.merchandise.present? %>
-                <p class="shop-detail-post-line mb-1"><strong>今日の商品:</strong> <%= post.merchandise %></p>
-              <% end %>
-              <% if post.top_merchandise.present? %>
-                <p class="shop-detail-post-line mb-1"><strong>今日の一押し:</strong> <%= post.top_merchandise %></p>
-              <% end %>
-              <% if post.comment.present? %>
-                <p class="shop-detail-post-line mb-1"><%= post.comment %></p>
-              <% end %>
-              <% if post.schedule.present? %>
-                <p class="shop-detail-post-line mb-0 shop-detail-post-schedule"><i class="bi bi-arrow-right-short"></i><%= post.schedule %></p>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     <% else %>

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :danger
   before_action :require_login
   before_action :require_login_has_shop
+  helper_method :current_user
   def logged_in?
     !!current_user
   end

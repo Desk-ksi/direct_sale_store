@@ -53,7 +53,7 @@ class LoginsController < ApplicationController
           session[:user_id] = user.id
           redirect_path = session[:request_path]
           session.delete(:request_path)
-          redirect__to redirect_path || root_path, success: 'ログインが完了しました'
+          redirect_to redirect_path || root_path, success: 'ログインが完了しました'
         else
           redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
         end

@@ -1145,3 +1145,70 @@ body {
 .btn-danger-outline:hover {
     background-color: var(--color-error-container);
 }
+.post-detail-shop-name {
+    font-family: 'notoSans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.post-detail-image {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-surface-container-high);
+}
+.post-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.post-detail-sold-out-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.post-detail-info {
+    background-color: var(--color-surface-container);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+}
+.post-detail-info-row {
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--color-outline-variant);
+}
+.post-detail-info-row:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+.post-detail-info-label {
+    display: block;
+    font-family: 'notoSans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.3rem;
+}
+.post-detail-info-value {
+    font-family: 'notoSans', sans-serif;
+    font-size: 15px;
+    color: var(--color-on-background);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+.shop-detail-post-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}

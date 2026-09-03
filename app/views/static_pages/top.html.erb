@@ -91,6 +91,9 @@
               </div>
               <div class="recent-post-body">
                 <p class="recent-post-shop-name mb-1"><%= post.shop.name %></p>
+                <p class="recent-post-address mb-1">
+                  <i class="bi bi-geo"></i> <%= post.shop.prefecture %><%= post.shop.municipality %>
+                </p>
                 <% if post.merchandise.present? %>
                   <p class="recent-post-merchandise mb-1"><%= post.merchandise %></p>
                 <% end %>

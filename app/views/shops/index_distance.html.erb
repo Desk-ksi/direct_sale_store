@@ -17,6 +17,9 @@
             </div>
             <div class="shop-list-body">
               <p class="shop-list-name mb-1"><%= shop.name %></p>
+              <p class="shop-list-address mb-1">
+                <i class="bi bi-geo"></i> <%= shop.prefecture %><%= shop.municipality %>
+              </p>
               <p class="shop-list-distance mb-1">
                 <i class="bi bi-geo-alt"></i> 現在地から 約<%= result.round(1) %>km
               </p>

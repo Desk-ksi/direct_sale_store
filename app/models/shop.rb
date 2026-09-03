@@ -9,6 +9,7 @@ class Shop < ApplicationRecord
   validates :season, length: { maximum: 255 }
   validates :business_hours, length: { maximum: 255 }
   validates :timing, length: { maximum: 255 }
+  validates :prefecture, presence: true
   has_many :posts, dependent: :destroy
   has_many :user_shops, dependent: :destroy
   has_many :users, through: :user_shops

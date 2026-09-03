@@ -90,6 +90,6 @@ class ShopsController < ApplicationController
       private
 
   def shop_params
-    params.require(:shop).permit(:shop_image, :name, :latitude, :longitude, :kodawari, :price, :season, :timing, :business_hours)
+    params.require(:shop).permit(:shop_image, :name, :latitude, :longitude, :kodawari, :price, :season, :timing, :business_hours, :prefecture, :municipality)
   end
 end

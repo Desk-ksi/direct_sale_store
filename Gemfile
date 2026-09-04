@@ -40,7 +40,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # ファイルアップロードのためのGem
-gem "carrierwave", "2.2.2"
+gem "carrierwave", "3.1.4"
 
 # SMS認証を外部APIを使用して、利用できるようにするためのtwilioのGem
 gem 'twilio-ruby', '~> 7.10.7'

@@ -41,3 +41,6 @@
 
 # Macで勝手に作られる.DS_Storeをgit管理しないように設定
 .DS_Store
+
+# development環境で作られるpublic/uploadsをgit管理しないように設定
+/public/uploads

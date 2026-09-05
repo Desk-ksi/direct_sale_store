@@ -4,28 +4,35 @@ class LoginsController < ApplicationController
   before_action :logged_in_new_shop_path?
   def new;end
   def create
-    account_sid = Rails.application.credentials.twilio.account_sid
-    auth_token = Rails.application.credentials.twilio.auth_token
-    verify_service_sid = Rails.application.credentials.twilio.verify_service_sid
-    phone_number = params[:phone_number].delete("^0-9")
-    phone_number_set = phone_number.sub(/0/,'+81')
-    @client = Twilio::REST::Client.new(account_sid, auth_token)
-    begin
-      verification = @client
-                    .verify
-                    .v2
-                    .services(verify_service_sid)
-                    .verifications
-                    .create(
-                      channel: 'sms',
-                      to: phone_number_set
-                    )
-      session[:phone_number] = phone_number_set
-      redirect_to action: :confirm
-    rescue Twilio::REST::RestError => e
-      Rails.logger.error(e.message)
-      flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
-      render :new
+    if Rails.env.development?
+      session[:user_id] = User.first.id
+      redirect_path = session[:request_path]
+      session.delete(:request_path) 
+      redirect_to redirect_path || root_path, success: 'ログインが完了しました'
+    else
+      account_sid = Rails.application.credentials.twilio.account_sid
+      auth_token = Rails.application.credentials.twilio.auth_token
+      verify_service_sid = Rails.application.credentials.twilio.verify_service_sid
+      phone_number = params[:phone_number].delete("^0-9")
+      phone_number_set = phone_number.sub(/0/,'+81')
+      @client = Twilio::REST::Client.new(account_sid, auth_token)
+      begin
+        verification = @client
+                      .verify
+                      .v2
+                      .services(verify_service_sid)
+                      .verifications
+                      .create(
+                        channel: 'sms',
+                        to: phone_number_set
+                      )
+        session[:phone_number] = phone_number_set
+        redirect_to action: :confirm
+      rescue Twilio::REST::RestError => e
+        Rails.logger.error(e.message)
+        flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
+        render :new
+      end
     end
   end
   def confirm

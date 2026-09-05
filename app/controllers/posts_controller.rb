@@ -58,7 +58,7 @@ class PostsController < ApplicationController
 
   def post_params
     # post_images_attributes 関連づけられたテーブルからのパラメーターはこのようにはいり、その中でどのカラムを使うかを指定。[]の中に、post_imagesテーブルのどのカラムを使うかを指定する
-    params.require(:post).permit(:merchandise, :schedule, :top_merchandise, post_images_attributes: [:post_image])
+    params.require(:post).permit(:comment,:merchandise, :schedule, :top_merchandise, post_images_attributes: [:id, :post_image])
   end
 end
 

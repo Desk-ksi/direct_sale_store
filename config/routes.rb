@@ -33,4 +33,5 @@ Rails.application.routes.draw do
     resources :posts, only: %i{ new create index show edit update destroy } 
   end
   get "my_shops", to: "posts#my_shops"
+  resource :profile, only: %i{ show edit update destroy }
 end

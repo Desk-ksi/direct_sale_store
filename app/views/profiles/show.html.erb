@@ -1,0 +1,40 @@
+<div class="page-container d-flex flex-column align-items-center">
+
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">プロフィール</h2>
+  </div>
+
+  <div class="w-100 profile-info mb-4">
+    <div class="profile-info-row">
+      <span class="profile-info-label">ニックネーム</span>
+      <p class="profile-info-value"><%= @user.name %></p>
+    </div>
+    <div class="profile-info-row">
+      <span class="profile-info-label">電話番号</span>
+      <p class="profile-info-value"><%= @user.phone_number %></p>
+    </div>
+    <% if @user.age.present? %>
+      <div class="profile-info-row">
+        <span class="profile-info-label">年代</span>
+        <p class="profile-info-value"><%= @user.age %>代</p>
+      </div>
+    <% end %>
+    <% if @user.email.present? %>
+      <div class="profile-info-row">
+        <span class="profile-info-label">メールアドレス</span>
+        <p class="profile-info-value"><%= @user.email %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to edit_profile_path, class: "btn-primary-wide tactile-press mb-3" do %>
+    <i class="bi bi-pencil-square me-2"></i>プロフィールを編集する
+  <% end %>
+
+  <%= link_to profile_path,
+        class: "btn-danger-outline tactile-press",
+        data: { turbo_method: :delete, turbo_confirm: "アカウントを削除します。この操作は取り消せません。よろしいですか？" } do %>
+    <i class="bi bi-trash3 me-2"></i>アカウントを削除する
+  <% end %>
+
+</div>

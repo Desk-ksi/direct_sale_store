@@ -1,11 +1,11 @@
 class LoginsController < ApplicationController
   skip_before_action :require_login
   skip_before_action :require_login_has_shop
-  before_action :logged_in_new_shop_path?
+  before_action :logged_in_new_shop_path?, only: %i{ new }
   def new;end
   def create
     if Rails.env.development?
-      session[:user_id] = User.first.id
+      session[:user_id] = User.find(3).id
       redirect_path = session[:request_path]
       session.delete(:request_path) 
       redirect_to redirect_path || root_path, success: 'ログインが完了しました'
@@ -75,6 +75,10 @@ class LoginsController < ApplicationController
       flash.now[:danger] = "エラーが発生しました。もう一度お試しください"
       render :confirm
     end
+  end
+  def destroy
+    logout
+    redirect_to root_path, success: 'ログアウトしました', status: :see_other
   end
 
   private

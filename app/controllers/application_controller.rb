@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :danger
   before_action :require_login
   before_action :require_login_has_shop
-  helper_method :current_user
+  helper_method :current_user, :logged_in?
   def logged_in?
     !!current_user
   end
@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
   end
   def current_user_has_shop
     @current_user_has_shop ||= UserShop.find_by(user_id: session[:user_id]) if logged_in?
+  end
+  def logout
+    session[:user_id] = nil
+    @current_user = nil
+    @current_user_has_shop = nil
   end
 
   private

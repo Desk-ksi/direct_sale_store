@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "how_to/shop", to:"static_pages#shop_how_to"
   get "how_to/post", to:"static_pages#post_how_to"
   get "how_to/promote", to:"static_pages#promote_how_to"
-  resource :login, only: %i{ new create } do
+  resource :login, only: %i{ new create destroy } do
     collection do
       get :confirm
       post :verify

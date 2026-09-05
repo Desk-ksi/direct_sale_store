@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :require_login, only: %i[ show ]
+  skip_before_action :require_login_has_shop, only: %i[ show ]
   def new
     @shop = Shop.find(params[:shop_id])
     @post = @shop.posts.new

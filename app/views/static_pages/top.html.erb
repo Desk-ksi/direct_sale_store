@@ -22,24 +22,24 @@
   <!-- Primary Action Area (Producers) -->
   <div class="w-100 d-flex flex-column gap-3 mb-4">
     <!-- Register Shop Button -->
-    <%= link_to new_shop_path, class:"w-100 btn-primary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press" do %>
-      <div class="icon-wrapper p-3 d-flex align-items-center justify-content-center">
-        <i class="bi bi-plus-square-dotted" style="font-size: 1rem;"></i>
+    <%= link_to new_shop_path, class:"w-100 btn-primary-action shadow-sm d-flex align-items-center px-3 py-3 gap-3 tactile-press" do %>
+      <div class="icon-wrapper d-flex align-items-center justify-content-center">
+        <i class="bi bi-plus-square-dotted"></i>
       </div>
       <div class="d-flex flex-column text-start">
         <span class="font-label-lg mb-1" style="opacity: 0.9;">直売所の方へ</span>
-        <span class="font-button-text fs-4">あなたの店舗を登録する</span>
+        <span class="font-button-text">あなたの店舗を登録する</span>
       </div>
     <% end %>
 
     <!-- Post Inventory Button (High Contrast/Urgency) -->
-    <%= link_to my_shops_path, class:"w-100 btn-tertiary-action shadow-sm d-flex align-items-center p-4 gap-4 tactile-press" do %>
-      <div class="icon-wrapper p-3 d-flex align-items-center justify-content-center">
-        <i class="bi bi-truck" style="font-size: 1rem;"></i>
+    <%= link_to my_shops_path, class:"w-100 btn-tertiary-action shadow-sm d-flex align-items-center px-3 py-3 gap-3 tactile-press" do %>
+      <div class="icon-wrapper d-flex align-items-center justify-content-center">
+        <i class="bi bi-truck"></i>
       </div>
       <div class="d-flex flex-column text-start">
         <span class="font-label-lg mb-1" style="opacity: 0.9;">入荷・出荷のお知らせ</span>
-        <span class="font-button-text fs-4">今日の出荷状況を投稿する</span>
+        <span class="font-button-text">今日の出荷状況を投稿する</span>
       </div>
     <% end %>
   </div>

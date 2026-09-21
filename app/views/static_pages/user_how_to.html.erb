@@ -48,6 +48,7 @@
 <div class="page-container d-flex flex-column align-items-center">
   <p class="font-body-md text-success fw-bold text-center mb-1">あなたの町の直売所</p>
   <h1 class="font-headline-lg-mobile text-center mb-2">登録の仕方</h1>
+  <%= link_to "印刷用の文書を表示する", "/how_to/user/1_user.pdf", class: "btn-primary-wide tactile-press mt-4 no-print mb-5", target: "_blank" %>
   <p class="font-body-md text-secondary text-center mb-4">①から順番に、ひとつずつ進めてください。むずかしい操作はありません。</p>
 
   <% steps.each_with_index do |step, i| %>

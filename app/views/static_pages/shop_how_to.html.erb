@@ -1,60 +1,119 @@
 <% content_for(:title, '使い方 | 店舗登録') %>
-<div class="page-container d-flex flex-column align-items-center how-to-print">
+<% prereqs = [
+  { num: "①", text: "ログインについて：まだログインしていない場合は、ボタンを押すと先にログイン画面が出ます。ログインが終わると、自動でお店の登録画面(STEP2)に進みます。(ログインの仕方は「登録の仕方」の説明書をご覧ください)" },
+  { num: "②", text: "お店の場所について：お店の場所は、スマホが今いる場所を読み取って自動で記録します。そのため、登録を始める前に、必ず実際にお店の前まで行ってください。" }
+] %>
 
-  <%= link_to how_to_path, class: "how-to-back-link mb-3" do %>
-    <i class="bi bi-arrow-left"></i> 使い方の一覧に戻る
+<% steps = [
+  {
+    title: "トップページの「あなたの店舗を登録する」を押します",
+    notes: [
+      { type: :plain, text: "トップページのいちばん目立つ、緑色のボタン「あなたの店舗を登録する」を押します。" },
+      { type: :plain, text: "ログイン済みで、まだお店を登録していない場合は、自動でお店の登録画面(次のSTEP)が開きます。" }
+    ],
+    image: "how_to/shop/registration/01_top.png",
+    caption: "① トップページ(画面をすべて表示しています)"
+  },
+  {
+    title: "「お店の写真」をタップして、写真を選びます",
+    notes: [
+      { type: :plain, text: "四角い枠の部分をタップすると、カメラで新しく写真を撮るか、すでに撮ってある写真を選ぶか、たずねられます。" },
+      { type: :plain, text: "お店や、売っている野菜・果物などの写真を選んでください。" }
+    ],
+    image: "how_to/shop/registration/02_photo.png",
+    caption: "① 写真を選ぶ場所"
+  },
+  {
+    title: "お店の場所を設定します",
+    notes: [
+      { type: :sub, num: "①", text: "お店の前まで行きます。" },
+      { type: :sub, num: "②", text: "「お店の前で、このボタンを押してください」を押します。スマホが今いる場所を、自動で読み取ります。" },
+      { type: :note, text: "はじめて押したとき「位置情報の利用を許可しますか？」と聞かれたら、「許可する」を選んでください。" }
+    ],
+    image: "how_to/shop/registration/03_location.png",
+    caption: "② 場所を設定するボタン"
+  },
+  {
+    title: "お店の名前を入力し、都道府県を選びます",
+    notes: [
+      { type: :sub, num: "①", text: "「お店の名前」の欄に、お店の名前を入力します。" },
+      { type: :sub, num: "②", text: "「都道府県」の欄を押して、一覧の中から、お店がある都道府県を選びます。" },
+      { type: :sub, num: "③", text: "「市町村」の欄には、市町村の名前を入力します。(例:山田市)入力しなくても大丈夫です。" },
+      { type: :note, text: "都道府県を選んでおくと、お客さんがアプリでお店を探すときに見つけてもらいやすくなります。" }
+    ],
+    image: "how_to/shop/registration/04_name_pref.png",
+    caption: "① お店の名前を入力する場所 ② 都道府県を選ぶ場所 ③ 市町村を入力する場所(任意)"
+  },
+  {
+    title: "もっと詳しく登録したい方は(任意)",
+    notes: [
+      { type: :plain, text: "ここまでの入力だけで登録できます。もっと詳しくお店を紹介したい場合は、下にある「さらに詳しく入力する(任意)」を押すと、追加で入力できる項目が出てきます。" },
+      { type: :note, text: "急がなくて大丈夫です。まずは①〜④だけ登録して、あとから追加してもかまいません。" }
+    ],
+    image: "how_to/shop/registration/05_detail_toggle.png",
+    caption: "「さらに詳しく入力する」を押すと開きます"
+  },
+  {
+    title: "開いた項目には、こんなことを書きます(任意)",
+    notes: [
+      { type: :sub, num: "①", text: "商品へのこだわり:お店や商品の自慢したいところを、自由に書きます。(例:無農薬で育てた、朝どれ野菜が自慢です)" },
+      { type: :sub, num: "②", text: "価格帯:だいたいの値段を書きます。(例:100円〜300円)" },
+      { type: :sub, num: "③", text: "販売時期:出荷できる時期を書きます。(例:4月〜11月)" },
+      { type: :sub, num: "④", text: "営業時間:お店を開けている時間帯を書きます。(例:日の出〜日没)" },
+      { type: :sub, num: "⑤", text: "出荷頻度:どれくらいの頻度で出荷するかを書きます。(例:毎日 / 不定期)" },
+      { type: :note, text: "すべて入力しなくても大丈夫です。あとから「店舗編集」で書き直すこともできます。" }
+    ],
+    image: "how_to/shop/registration/06_detail_fields.png",
+    caption: "①〜⑤ それぞれの入力欄"
+  },
+  {
+    title: "「この内容で登録する」を押します",
+    notes: [{ type: :plain, text: "すべて入力できたら、いちばん下にある、緑色の「この内容で登録する」を押します。" }],
+    image: "how_to/shop/registration/07_submit.png",
+    caption: "① 登録するボタン"
+  },
+  {
+    title: "このような画面が出れば、登録は完了です",
+    notes: [
+      { type: :plain, text: "「店舗登録が完了しました」という画面が出れば、お店の登録は無事に終わっています。" },
+      { type: :plain, text: "「最初のページに戻る」を押すと、トップページに戻れます。" }
+    ],
+    image: "how_to/shop/registration/08_complete.png",
+    caption: "登録が完了した画面(画面をすべて表示しています)"
+  }
+] %>
+
+<div class="page-container d-flex flex-column align-items-center">
+  <p class="font-body-md text-success fw-bold text-center mb-1">あなたの町の直売所</p>
+  <h1 class="font-headline-lg-mobile text-center mb-2">店舗登録の仕方</h1>
+  <p class="font-body-md text-secondary text-center mb-4">①から順番に、ひとつずつ進めてください。むずかしい操作はありません。</p>
+
+  <div class="alert border border-warning border-2 w-100 mb-4" style="max-width: 640px; background-color:#FDF1E0;">
+    <p class="fw-bold mb-2" style="color:#C9791F;">はじめる前に、2つだけ確認してください</p>
+    <% prereqs.each do |p| %>
+      <p class="mb-2"><span class="fw-bold text-danger me-1"><%= p[:num] %></span><%= p[:text] %></p>
+    <% end %>
+  </div>
+
+  <% steps.each_with_index do |step, i| %>
+    <div class="howto-step border rounded-3 p-3 p-md-4 mb-4 w-100" style="max-width: 640px;">
+      <span class="badge bg-success text-white mb-2">STEP <%= i + 1 %></span>
+      <h2 class="font-label-lg mb-2"><%= step[:title] %></h2>
+      <div class="howto-note bg-light border-start border-4 border-success p-3 mb-3">
+        <% step[:notes].each do |n| %>
+          <% if n[:type] == :sub %>
+            <p class="mb-2"><span class="fw-bold text-danger me-1"><%= n[:num] %></span><%= n[:text] %></p>
+          <% elsif n[:type] == :note %>
+            <p class="text-secondary small ms-3 mb-0">※<%= n[:text] %></p>
+          <% else %>
+            <p class="mb-2"><%= n[:text] %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <%= image_tag step[:image], class: "img-fluid rounded border", alt: step[:caption] %>
+      <p class="text-secondary text-center small fst-italic mt-2 mb-0"><%= step[:caption] %></p>
+    </div>
   <% end %>
 
-  <div class="w-100 text-center mb-4">
-    <h2 class="font-headline-lg-mobile mb-2">店舗登録の仕方</h2>
-  </div>
-
-  <!-- 事前の心構え -->
-  <div class="how-to-notice mb-4">
-    <i class="bi bi-info-circle-fill how-to-notice-icon"></i>
-    <p class="how-to-notice-body mb-0">
-      店舗登録は、<strong>登録する直売所に実際に行ってから</strong>、
-      行ってください。お店の場所を正しく登録するために必要です。
-    </p>
-  </div>
-
-  <ol class="how-to-step-list">
-    <li>
-      <span class="how-to-step-num">1</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">お店の写真を撮って選ぶ</p>
-        <p class="how-to-step-desc">カメラのマークをタップすると、撮影・選択できます</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">2</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">お店の前で「お店の前で、このボタンを押してください」を押す</p>
-        <p class="how-to-step-desc">お店の場所が、自動で登録されます</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">3</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">お店の名前を入力する</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">4</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">「この内容で登録する」を押す</p>
-        <p class="how-to-step-desc">
-          そのほかのお店の情報も登録できます
-          こだわり・価格帯・販売時期・営業時間・出荷頻度は、
-          「さらに詳しく入力する」から、後からでも入力できます
-          ぜひ詳細な情報をお客さんに知ってもらいましょう
-        </p>
-      </div>
-    </li>
-  </ol>
-
-  <button class="btn-primary-wide tactile-press mt-4 no-print" onclick="window.print()">
-    <i class="bi bi-printer-fill me-2"></i>このページを印刷する
-  </button>
-
+  <p class="font-label-lg text-success fw-bold text-center mt-3">これで店舗登録は完了です!</p>
 </div>

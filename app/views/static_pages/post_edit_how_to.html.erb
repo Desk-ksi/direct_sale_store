@@ -1,0 +1,139 @@
+<% prereqs = [
+  { num: "①", text: "ログインについて：まだログインしていない場合は、ボタンを押すと先にログイン画面が出ます。ログインが終わると、自動でつづきの画面に進みます。(ログインの仕方は「登録の仕方」の説明書をご覧ください)" },
+  { num: "②", text: "投稿について：この操作は、すでに投稿したものにだけできます。まだ投稿していない場合は、先に「今日の出荷を投稿する仕方」の説明書を見て、投稿してください。" }
+] %>
+
+<% steps = [
+  {
+    title: "画面いちばん下にある「投稿管理」を押します",
+    notes: [{ type: :plain, text: "どの画面からでも、いちばん下に4つのボタンが並んでいます。その中の「投稿管理」を押します。" }],
+    image: "how_to/post/edit/01_navbar.png",
+    caption: "① 画面いちばん下にある「投稿管理」ボタン"
+  },
+  {
+    title: "お店を選びます",
+    notes: [
+      { type: :plain, text: "お店の一覧が出てきます。編集・削除したい投稿があるお店を選びます。" },
+      { type: :note, text: "お店を1つしか登録していない場合も、この画面が出ます。そのお店を押してください。" }
+    ],
+    image: "how_to/post/edit/02_myshops.png",
+    caption: "① お店を選ぶ場所"
+  },
+  {
+    title: "編集・削除したい投稿を選びます",
+    notes: [{ type: :plain, text: "選んだお店の投稿一覧が出てきます。内容を変えたい・消したい投稿のカードを押します。" }],
+    image: "how_to/post/edit/03_index.png",
+    caption: "① 投稿を選ぶ場所"
+  },
+  {
+    title: "投稿の詳細画面が出ます",
+    notes: [
+      { type: :sub, num: "①", text: "内容を書き直したいときは、「この投稿を編集する」を押します。" },
+      { type: :sub, num: "②", text: "すぐに削除したいときは、「この投稿を削除する」を押します。" }
+    ],
+    image: "how_to/post/edit/04_show.png",
+    caption: "① 編集するボタン ② 削除するリンク"
+  },
+  {
+    title: "写真を変えたい場合",
+    notes: [
+      { type: :plain, text: "写真の部分をタップすると、新しい写真を選べます。" },
+      { type: :note, text: "変更したい項目だけ書き換えれば大丈夫です。他の項目は、そのままで構いません。" }
+    ],
+    image: "how_to/post/edit/05_photo.png",
+    caption: "① 写真を変える場所"
+  },
+  {
+    title: "今日の商品・今日の一押しを確認します",
+    notes: [{ type: :plain, text: "これまで投稿した内容が、あらかじめ入っています。変えたい部分だけ書き直してください。" }],
+    image: "how_to/post/edit/06_fields1.png",
+    caption: "① 今日の商品 ② 今日の一押し"
+  },
+  {
+    title: "コメント・明日の予定を確認します",
+    notes: [{ type: :plain, text: "こちらも、これまでの内容が入っています。変えたい部分だけ書き直してください。" }],
+    image: "how_to/post/edit/07_fields2.png",
+    caption: "① コメント ② 明日の予定"
+  },
+  {
+    title: "「この内容で保存する」を押します",
+    notes: [{ type: :plain, text: "書き直しが終わったら、緑色の「この内容で保存する」を押します。これで変更は完了です。" }],
+    image: "how_to/post/edit/08_save.png",
+    caption: "① 保存するボタン"
+  },
+  {
+    danger: true,
+    divider_before: {
+      heading: "ここまでで、投稿の変更は完了です。",
+      sub: "ここから先は、投稿を「削除」する方法です。削除すると元に戻せないので、よく確認してから進めてください。",
+      warning_heading: "投稿を削除する前に",
+      warning: "投稿を削除すると、その投稿はすべて消えてしまいます。あとから元に戻すことはできません。"
+    },
+    title: "方法①：投稿の詳細画面から削除する",
+    notes: [{ type: :plain, text: "STEP4の画面(投稿の詳細画面)で、「この投稿を削除する」を押します。" }],
+    image: "how_to/post/edit/04_show.png",
+    caption: "② この投稿を削除するリンク(詳細画面のいちばん下)"
+  },
+  {
+    danger: true,
+    title: "方法②：編集する画面からも削除できます",
+    notes: [{ type: :plain, text: "STEP8の画面(投稿を編集する画面)をいちばん下までスクロールすると、「この投稿を削除する」というリンクがあります。こちらからも削除できます。" }],
+    image: "how_to/post/edit/10_edit_delete_link.png",
+    caption: "① この投稿を削除するリンク(編集画面のいちばん下)"
+  },
+  {
+    danger: true,
+    title: "確認の画面が出たら、よく読んで選びます",
+    notes: [
+      { type: :sub, num: "①", text: "「この投稿を削除します。よろしいですか？」という確認が出ます。" },
+      { type: :sub, num: "②", text: "やめたいときは「キャンセル」を押します。削除してよければ「OK」を押します。" },
+      { type: :note, text: "迷ったときは「キャンセル」を押せば、何も変わりません。安心して押してください。" }
+    ],
+    image: "how_to/post/edit/11_confirm_dialog.png",
+    caption: "①② 確認の画面(赤い枠がOKボタン)"
+  }
+] %>
+
+<div class="page-container d-flex flex-column align-items-center">
+  <p class="font-body-md text-success fw-bold text-center mb-1">あなたの町の直売所</p>
+  <h1 class="font-headline-lg-mobile text-center mb-2">投稿を編集・削除する仕方</h1>
+  <p class="font-body-md text-secondary text-center mb-4">①から順番に、ひとつずつ進めてください。むずかしい操作はありません。</p>
+
+  <div class="alert border border-warning border-2 w-100 mb-4" style="max-width: 640px; background-color:#FDF1E0;">
+    <p class="fw-bold mb-2" style="color:#C9791F;">はじめる前に、2つだけ確認してください</p>
+    <% prereqs.each do |p| %>
+      <p class="mb-2"><span class="fw-bold text-danger me-1"><%= p[:num] %></span><%= p[:text] %></p>
+    <% end %>
+  </div>
+
+  <% steps.each_with_index do |step, i| %>
+    <% if step[:divider_before] %>
+      <p class="font-label-lg text-success fw-bold text-center mt-2 mb-1"><%= step[:divider_before][:heading] %></p>
+      <p class="text-secondary text-center small mb-4"><%= step[:divider_before][:sub] %></p>
+      <div class="alert border border-warning border-2 w-100 mb-4" style="max-width: 640px; background-color:#FDF1E0;">
+        <p class="fw-bold mb-2" style="color:#C9791F;"><%= step[:divider_before][:warning_heading] %></p>
+        <p class="mb-0"><%= step[:divider_before][:warning] %></p>
+      </div>
+    <% end %>
+
+    <div class="howto-step border rounded-3 p-3 p-md-4 mb-4 w-100" style="max-width: 640px;">
+      <span class="badge <%= step[:danger] ? 'bg-danger' : 'bg-success' %> text-white mb-2">STEP <%= i + 1 %></span>
+      <h2 class="font-label-lg mb-2"><%= step[:title] %></h2>
+      <div class="howto-note border-start border-4 p-3 mb-3" style="<%= step[:danger] ? 'background-color:#FDF1E0; border-color:#C9791F !important;' : 'background-color:#EAF2E9; border-color:#2E5B2E !important;' %>">
+        <% step[:notes].each do |n| %>
+          <% if n[:type] == :sub %>
+            <p class="mb-2"><span class="fw-bold text-danger me-1"><%= n[:num] %></span><%= n[:text] %></p>
+          <% elsif n[:type] == :note %>
+            <p class="text-secondary small ms-3 mb-0">※<%= n[:text] %></p>
+          <% else %>
+            <p class="mb-2"><%= n[:text] %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <%= image_tag step[:image], class: "img-fluid rounded border", alt: step[:caption] %>
+      <p class="text-secondary text-center small fst-italic mt-2 mb-0"><%= step[:caption] %></p>
+    </div>
+  <% end %>
+
+  <p class="font-label-lg text-success fw-bold text-center mt-3">これで投稿の編集・削除は完了です!</p>
+</div>

@@ -11,4 +11,6 @@ class StaticPagesController < ApplicationController
   def shop_how_to;end
   def post_how_to;end
   def promote_how_to;end
+  def shop_edit_how_to;end
+  def post_edit_how_to;end
 end

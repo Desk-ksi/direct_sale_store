@@ -1,45 +1,74 @@
 <% content_for(:title, '使い方 | あなたの登録') %>
-<div class="page-container d-flex flex-column align-items-center how-to-print">
+<% steps = [
+  {
+    title: "トップページを開き、緑色のボタンを押します",
+    notes: [{ type: :plain, text: "トップページのいちばん目立つ、緑色のボタン「あなたの店舗を登録する」を押します。" }],
+    image: "how_to/user/01_top.png",
+    caption: "① トップページ(画面をすべて表示しています)"
+  },
+  {
+    title: "電話番号を入力して、送信します",
+    notes: [
+      { type: :sub, num: "①", text: "「携帯電話番号」の欄に、ご自分の携帯電話の番号を入力します。(ハイフン「-」は、あってもなくても大丈夫です)" },
+      { type: :sub, num: "②", text: "入力できたら、緑色の「確認コードを送信する」を押します。" }
+    ],
+    image: "how_to/user/02_phone.png",
+    caption: "① 番号を入力する場所 ② 送信するボタン"
+  },
+  {
+    title: "携帯電話にメッセージが届きます",
+    notes: [
+      { type: :plain, text: "少し待つと、さきほど入力した携帯電話に、短いメッセージ(SMS)が届きます。" },
+      { type: :plain, text: "メッセージに書かれている6桁の数字が「確認コード」です。この数字を覚えておいてください。" }
+    ],
+    image: "how_to/user/03_sms.png",
+    caption: "実際に届くメッセージの例(数字の部分が確認コードです)"
+  },
+  {
+    title: "届いた確認コードを入力します",
+    notes: [
+      { type: :sub, num: "①", text: "「確認コード」の欄に、メッセージに書かれていた6桁の数字を入力します。" },
+      { type: :sub, num: "②", text: "入力できたら、緑色の「確認する」を押します。" }
+    ],
+    image: "how_to/user/04_confirm.png",
+    caption: "① 確認コードを入力する場所 ② 確認するボタン"
+  },
+  {
+    title: "ニックネームを入力して、登録を完了します",
+    notes: [
+      { type: :sub, num: "①", text: "「ニックネーム」の欄に、好きな名前を入力します。(本名でなくて大丈夫です)" },
+      { type: :sub, num: "②", text: "入力できたら、緑色の「登録を完了する」を押します。" },
+      { type: :note, text: "「年代」「メールアドレス」は入力しなくても大丈夫です。" }
+    ],
+    image: "how_to/user/05_nickname.png",
+    caption: "① ニックネームを入力する場所 ② 登録を完了するボタン"
+  }
+] %>
 
-  <%= link_to how_to_path, class: "how-to-back-link mb-3" do %>
-    <i class="bi bi-arrow-left"></i> 使い方の一覧に戻る
+<div class="page-container d-flex flex-column align-items-center">
+  <p class="font-body-md text-success fw-bold text-center mb-1">あなたの町の直売所</p>
+  <h1 class="font-headline-lg-mobile text-center mb-2">登録の仕方</h1>
+  <p class="font-body-md text-secondary text-center mb-4">①から順番に、ひとつずつ進めてください。むずかしい操作はありません。</p>
+
+  <% steps.each_with_index do |step, i| %>
+    <div class="howto-step border rounded-3 p-3 p-md-4 mb-4 w-100" style="max-width: 640px;">
+      <span class="badge bg-success text-white mb-2">STEP <%= i + 1 %></span>
+      <h2 class="font-label-lg mb-2"><%= step[:title] %></h2>
+      <div class="howto-note bg-light border-start border-4 border-success p-3 mb-3">
+        <% step[:notes].each do |n| %>
+          <% if n[:type] == :sub %>
+            <p class="mb-2"><span class="fw-bold text-danger me-1"><%= n[:num] %></span><%= n[:text] %></p>
+          <% elsif n[:type] == :note %>
+            <p class="text-secondary small ms-3 mb-0">※<%= n[:text] %></p>
+          <% else %>
+            <p class="mb-2"><%= n[:text] %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <%= image_tag step[:image], class: "img-fluid rounded border", alt: step[:caption] %>
+      <p class="text-secondary text-center small fst-italic mt-2 mb-0"><%= step[:caption] %></p>
+    </div>
   <% end %>
 
-  <div class="w-100 text-center mb-4">
-    <h2 class="font-headline-lg-mobile mb-2">登録の仕方</h2>
-  </div>
-
-  <ol class="how-to-step-list">
-    <li>
-      <span class="how-to-step-num">1</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">トップページの「あなたの店舗を登録する」を押す</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">2</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">携帯電話番号を入力して「確認コードを送信する」を押す</p>
-        <p class="how-to-step-desc">ハイフンは、あってもなくても大丈夫です</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">3</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">SMSで届いた6桁の確認コードを入力して「確認する」を押す</p>
-      </div>
-    </li>
-    <li>
-      <span class="how-to-step-num">4</span>
-      <div class="how-to-step-body">
-        <p class="how-to-step-title">ニックネームを入力して「登録を完了する」を押す</p>
-        <p class="how-to-step-desc">年代・メールアドレスは、入力しなくても大丈夫です</p>
-      </div>
-    </li>
-  </ol>
-
-  <button class="btn-primary-wide tactile-press mt-4 no-print" onclick="window.print()">
-    <i class="bi bi-printer-fill me-2"></i>このページを印刷する
-  </button>
-
+  <p class="font-label-lg text-success fw-bold text-center mt-3">これで登録は完了です!</p>
 </div>

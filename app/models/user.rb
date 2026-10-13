@@ -2,6 +2,25 @@ class User < ApplicationRecord
   before_validation :nullify_blank_email
   before_validation :nullify_blank_phone_number
 
+  # has_secure_passwordでは、デフォルトでパスワードが必須になるため、validationsをfalseにして自作する
+  # デフォルトのvalidationは必須、72バイト以下、パスワード確認用（_confirmation）と一致
+  has_secure_password(validations: false) # 自動validationをキャンセル
+
+  # 電話番号で登録したけど、メールアドレスだけ登録する人もいる
+  # メールアドレスだけ登録しておく場合に、メールアドレスを持っている人がパスワード必須にしたら、実現できない
+  # そのため、電話番号を持っていないくて、パスワードを持っていない人を対象にバリデーションをかける（private内でメソッドを定義）
+  validate :required_password, on: :create
+
+  # 電話番号だけの人はpassword_digestがnilになっている。nilは0文字と認識されるため、ユーザー編集などした際に、図らずもバリデーションに引っかかってしまう
+  # そのため、このバリデーションはpassword入力欄に入力されて保存される時に発動させたい
+  # 発動条件をpassword_digestにすると、すでに登録している人が、ユーザー編集をした時にバリデーションが発動してしまう。この時にはpasswordを入力するエリアはないのに(エラーになる)
+  # そのため、実際に各入力欄で入力された値達の塊であるオブジェクトから、passwordを抜き出して、passwordが存在すればバリデーションを発動させる。
+  # オブジェクトを取り出すのがProcで、オブジェクトをaとして、aからpasswordを取り出している
+  validates :password, length: (6..24), confirmation: true, if: Proc.new{ |a| a.password.present? }
+
+  # passwordを入力したら、確認用password(password_cofirmation)と照合して一致していたら通すバリデーション
+  # user編集の際に確認用passwordを必須にすると使いづらいため、on: :createでuser作成時のみで、オブジェクトにpasswordがあるときだけに発動するバリデーションとする（passwordのバリデーションの説明と一緒）
+  validates :password_confirmation, presence: true, on: :create, if: Proc.new{ |a| a.password.present? }
   validates :name, presence: true
   # phone_numberでのログインかemail+passwordでのログインを選択できるように改造
   # phone_numberがあるなら、ユニークで電話番号の正規表現に合うかバリデーション
@@ -23,6 +42,12 @@ class User < ApplicationRecord
   has_many :favorite_posts, through: :user_post_likes, source: :post
 
   private
+
+  def required_password
+    if phone_number.blank? && password.blank?
+      errors.add(:base, "メールアドレスとパスワードで登録する必要があります")
+    end
+  end
 
   def required_either_email_or_phone
     return if email.present? || phone_number.present?

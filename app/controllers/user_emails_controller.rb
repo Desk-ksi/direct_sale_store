@@ -16,7 +16,7 @@ class UserEmailsController < ApplicationController
       session.delete(:request_path)
       redirect_to redirect_path || new_shop_path, success: '登録が完了しました'
     else
-      flash.now[:danger] = '登録に失敗しました。もう一度お試しください'
+      flash.now[:danger] = '失敗しました。もう一度お試しください'
       render :new, status: :unprocessable_entity
     end
   end

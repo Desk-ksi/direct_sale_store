@@ -8,7 +8,7 @@ class LoginsController < ApplicationController
       session[:user_id] = User.find(3).id
       redirect_path = session[:request_path]
       session.delete(:request_path) 
-      redirect_to redirect_path || root_path, success: 'ログインが完了しました'
+      redirect_to redirect_path || root_path, success: 'あなたの確認ができました'
     else
       account_sid = Rails.application.credentials.twilio.account_sid
       auth_token = Rails.application.credentials.twilio.auth_token
@@ -60,13 +60,13 @@ class LoginsController < ApplicationController
           session[:user_id] = user.id
           redirect_path = session[:request_path]
           session.delete(:request_path)
-          redirect_to redirect_path || root_path, success: 'ログインが完了しました'
+          redirect_to redirect_path || root_path, success: 'あなたの確認ができました'
         else
-          redirect_to controller: :users, action: :new, success: '認証ができました。ユーザー登録をしてください'
+          redirect_to controller: :users, action: :new, success: 'あなたの確認ができました。あなたを登録してください'
         end
       else
         @phone_number = session[:phone_number]
-        flash.now[:danger] = '認証に失敗しました。もう一度お試しください'
+        flash.now[:danger] = '失敗しました。もう一度お試しください'
         render :confirm
       end
     rescue Twilio::REST::RestError => e

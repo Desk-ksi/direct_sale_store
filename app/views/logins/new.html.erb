@@ -1,34 +1,53 @@
-<% content_for(:title, '携帯番号入力画面') %>
+<% content_for(:title, '登録画面') %>
 <div class="page-container d-flex flex-column align-items-center">
-  <div class="step-indicator w-100 mb-4">
-    <span class="step-indicator-current">1</span> / 2
-  </div>
   <div class="w-100 text-center mb-4">
-    <h2 class="font-headline-lg-mobile mb-2">電話番号を入力してください</h2>
+    <h2 class="font-headline-lg-mobile mb-2">電話番号でもメールアドレスでも登録できます</h2>
     <p class="font-body-md text-secondary mb-0">
-      このアプリで店舗登録や投稿を利用するには、
+      このアプリで店舗登録や投稿を利用するには
     </p>
     <p class="font-body-md text-secondary mb-0">
-      まず電話番号であなたを確認する必要があります。
-    </p>
-    <p class="font-body-md text-secondary mb-0">
-      入力いただいた電話番号に、確認のためのショートメッセージ（SMS）を送ります。
+      ご本人の確認が必要です。お好きな方法を選んでください
     </p>
   </div>
-  <%= form_with url: login_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
-    <div class="w-100">
-      <label for="phone_number" class="font-label-lg mb-2 d-block">携帯電話番号</label>
-      <%= f.telephone_field :phone_number,
-            id: "phone_number",
-            class: "form-input-lg",
-            placeholder: "09012345678",
-            inputmode: "numeric",
-            autocomplete: "tel",
-            required: true %>
-      <p class="form-hint mt-2 mb-0">
-        ハイフンは、あってもなくても大丈夫です
-      </p>
+
+  <%# 電話番号で登録する %>
+  <section class="register-option">
+    <div class="step-indicator w-100 mb-2">
+      <span class="step-indicator-current">1</span> / 2
     </div>
-    <%= f.submit "確認コードを送信する", class: "btn-primary-wide tactile-press" %>
-  <% end %>
+    <h3 class="font-label-lg text-center mb-2">電話番号で登録する</h3>
+    <p class="form-hint text-center mb-3">
+      入力した電話番号に確認のためのショートメッセージ（SMS）を送ります
+    </p>
+    <%= form_with url: login_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
+      <div class="w-100">
+        <label for="phone_number" class="font-label-lg mb-2 d-block">携帯電話番号</label>
+        <%= f.telephone_field :phone_number,
+              id: "phone_number",
+              class: "form-input-lg",
+              placeholder: "09012345678",
+              inputmode: "numeric",
+              autocomplete: "tel",
+              required: true %>
+        <p class="form-hint mt-2 mb-0">
+          ハイフンはあってもなくても大丈夫です
+        </p>
+      </div>
+      <%= f.submit "確認コードを送信する", class: "btn-primary-wide tactile-press" %>
+    <% end %>
+  </section>
+
+  <p class="form-hint text-center my-3">または</p>
+
+  <%# メールアドレスで登録する %>
+  <section class="register-option text-center">
+    <h3 class="font-label-lg mb-2">メールアドレスで登録する</h3>
+    <p class="form-hint mb-3">
+      メールアドレスとパスワードで登録します。
+    </p>
+    <%= link_to "メールアドレスで登録する", new_user_email_path,
+          class: "btn-primary-wide tactile-press d-flex align-items-center justify-content-center text-decoration-none" %>
+    <%= link_to "すでにメールアドレスで登録した方はこちら", new_login_email_path,
+          class: "btn-link-plain mt-2" %>
+  </section>
 </div>

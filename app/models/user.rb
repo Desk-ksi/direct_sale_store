@@ -1,7 +1,14 @@
 class User < ApplicationRecord
+  # メールアドレスに全角英数や空白、大文字が入っていたら、自動で半角・小文字に直す
+  # 最初は private内でメソッドを作って before_validation で変換しようと思った
+  # ただ before_validation は保存（save）や検証(valid?)のときにしか動かない
+  # ログインでメールアドレスを入力して find_by で検索するときは、保存しないのでコールバックが動かず、
+  # 入力された大文字や全角のまま検索してしまい、保存してある値と合わなくて見つからない
+  # normalizes は代入、保存、更新に加えて、find_by などの検索に渡した値にも同じ変換をかけてくれる
+  # なのでログインの検索でもコントローラー側に変換を書かなくていい
+  normalizes :email, with: -> email {email.unicode_normalize(:nfkc).gsub(" ", "").downcase}
   before_validation :nullify_blank_email
   before_validation :nullify_blank_phone_number
-
   # has_secure_passwordでは、デフォルトでパスワードが必須になるため、validationsをfalseにして自作する
   # デフォルトのvalidationは必須、72バイト以下、パスワード確認用（_confirmation）と一致
   has_secure_password(validations: false) # 自動validationをキャンセル
@@ -9,6 +16,7 @@ class User < ApplicationRecord
   # 電話番号で登録したけど、メールアドレスだけ登録する人もいる
   # メールアドレスだけ登録しておく場合に、メールアドレスを持っている人がパスワード必須にしたら、実現できない
   # そのため、電話番号を持っていないくて、パスワードを持っていない人を対象にバリデーションをかける（private内でメソッドを定義）
+  # on: :createにしているのは、user更新のときにパスワードは入力することはない。新規登録だけに絞っておかないと、入力らんはないのに、パスワードを入力してくれとエラーが出る
   validate :required_password, on: :create
 
   # 電話番号だけの人はpassword_digestがnilになっている。nilは0文字と認識されるため、ユーザー編集などした際に、図らずもバリデーションに引っかかってしまう
@@ -43,15 +51,20 @@ class User < ApplicationRecord
 
   private
 
+  # 電話番号がないということはemail＋passwordで登録しないといけない
+  # 電話番号がない＝電話番号でのログインではない。電話番号を持っていてemailを持つことも許容したい
+  # 電話番号でもemail+passwordでもない人を絞るためには、電話番号とpasswordを持っていない人を新規登録の時だけ弾かないといけない
   def required_password
     if phone_number.blank? && password.blank?
       errors.add(:base, "メールアドレスとパスワードで登録する必要があります")
     end
   end
 
+  # emailもphone_numberもなかったらエラーを発生
   def required_either_email_or_phone
-    return if email.present? || phone_number.present?
-    errors.add(:base, "電話番号かメールアドレスを入力する必要があります")
+    if email.blank? && phone_number.blank?
+      errors.add(:base, "電話番号かメールアドレスを入力する必要があります")
+    end
   end
 
   # メールアドレスと電話番号はユニーク規制をしている
@@ -59,17 +72,17 @@ class User < ApplicationRecord
   # そうなると、からで登録した人たちは「””」空文字が登録される
   # 「””」が二人目になると、ユニーク規制に引っかかり、登録できなくなるため、空文字だったら、nilにするバリデーションの前でコールバックを行う
   # 最初は if email == "" にしていたが、これでは" "に対応できない
-  # presentは""も" "もnilも感知してfalseにするため、unlessでfalseだったら、次に行くようにしている 
+  # blnkは""も" "もnilも感知してtrueにするため、ifでtrueだったら、次に行くようにしている 
   def nullify_blank_email
     # モデルはどのインスタンスかがわかっているため、カラム名（email）だけで該当の値を取り出せる
-    unless email.present?
+    if email.blank?
       # ローカル変数ではなく、今扱っているインスタンスにメソッドを使っているんだと明示するために、self.が必要
       self.email = nil
     end
   end
 
   def nullify_blank_phone_number
-    unless phone_number.present?
+    if phone_number.blank?
       self.phone_number = nil
     end
   end

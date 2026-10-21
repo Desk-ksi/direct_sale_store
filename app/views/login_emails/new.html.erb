@@ -1,0 +1,35 @@
+<% content_for(:title, 'メールアドレスでの確認画面') %>
+<div class="page-container d-flex flex-column align-items-center">
+  <div class="w-100 text-center mb-4">
+    <h2 class="font-headline-lg-mobile mb-2">登録したメールアドレスを入力してください</h2>
+    <p class="font-body-md text-secondary mb-0">
+      メールアドレスとパスワードであなたの確認をします。
+    </p>
+  </div>
+
+  <%= form_with url: login_email_path, method: :post, class: "w-100 d-flex flex-column gap-4" do |f| %>
+    <div class="w-100">
+      <label for="email" class="font-label-lg mb-2 d-block">メールアドレス</label>
+      <%= f.email_field :email,
+            id: "email",
+            class: "form-input-lg",
+            placeholder: "example@mail.com",
+            autocomplete: "email",
+            required: true %>
+    </div>
+
+    <div class="w-100">
+      <label for="password" class="font-label-lg mb-2 d-block">パスワード</label>
+      <%= f.password_field :password,
+            id: "password",
+            class: "form-input-lg",
+            autocomplete: "current-password",
+            required: true %>
+    </div>
+
+    <%= f.submit "確認する", class: "btn-primary-wide tactile-press" %>
+  <% end %>
+
+  <%= link_to "メールアドレスではじめて登録する方はこちら", new_user_email_path, class: "btn-link-plain mt-3" %>
+  <%= link_to "電話番号で登録・確認する方はこちら", new_login_path, class: "btn-link-plain" %>
+</div>

@@ -45,9 +45,11 @@
     <p class="form-hint mb-3">
       メールアドレスとパスワードで登録します。
     </p>
-    <%= link_to "メールアドレスで登録する", new_user_email_path,
-          class: "btn-primary-wide tactile-press d-flex align-items-center justify-content-center text-decoration-none" %>
-    <%= link_to "すでにメールアドレスで登録した方はこちら", new_login_email_path,
-          class: "btn-link-plain mt-2" %>
+    <div class="d-flex flex-column gap-3">
+      <%= link_to "メールアドレスで登録する", new_user_email_path,
+            class: "btn-primary-wide tactile-press d-flex align-items-center justify-content-center text-decoration-none" %>
+      <%= link_to "すでにメールアドレスで登録した方", new_login_email_path,
+            class: "btn-primary-wide tactile-press d-flex align-items-center justify-content-center text-decoration-none" %>
+    </div>
   </section>
 </div>

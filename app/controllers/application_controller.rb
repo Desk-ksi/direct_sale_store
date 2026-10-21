@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # 店舗関係や投稿関係を操作しようとしたら、ログインを求められる
+  # ログインしたのちに、最初行きたかったところに戻るようにリクエストした時のパスをsessionに残しておく
+  # ログイン関係や店舗登録関係はログイン後にもしもsession[:request_path]があればそっちに飛ぶようにする
   def require_login
     unless logged_in?
       session[:request_path] = request.path

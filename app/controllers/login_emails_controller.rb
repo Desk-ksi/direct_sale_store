@@ -10,9 +10,11 @@ class LoginEmailsController < ApplicationController
     # パラメーターできたパスワードが平文化されたpassword_degistとあっているかをauthenticateで確認
     # 間違ったときにエラーが発生した内容にボッチ演算子（.&）
     if @user&.authenticate(params[:password])
-      session[:user_id] = @user.id
+      # 元々飛びたい場所が店舗登録ではなかったときに、元々のリクエスト先にリダイレクトできるようにする
       redirect_path = session[:request_path]
-      session.delete(:request_path)
+      # セッション固定攻撃対策でsessionを更新する前に一度リセットする
+      reset_session
+      session[:user_id] = @user.id
       redirect_to redirect_path || root_path, success: 'あなたの確認ができました'
     else
       flash.now[:danger] = '失敗しました。もう一度お試しください'

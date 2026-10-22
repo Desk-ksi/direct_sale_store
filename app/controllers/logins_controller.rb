@@ -57,9 +57,11 @@ class LoginsController < ApplicationController
       if verification_check.status == "approved"
         user = User.find_by(phone_number: session[:phone_number])
         if user.present?
-          session[:user_id] = user.id
+          # セッション固定攻撃対策でsessionをリセットする前に、後で使うsessionを取っておく
           redirect_path = session[:request_path]
-          session.delete(:request_path)
+          # セッション固定攻撃対策でsessionを更新する前に一度リセットする
+          reset_session
+          session[:user_id] = user.id
           redirect_to redirect_path || root_path, success: 'あなたの確認ができました'
         else
           redirect_to controller: :users, action: :new, success: 'あなたの確認ができました。あなたを登録してください'

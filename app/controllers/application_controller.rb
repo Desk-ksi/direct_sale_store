@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     @current_user_has_shop ||= UserShop.find_by(user_id: session[:user_id]) if logged_in?
   end
   def logout
-    session[:user_id] = nil
+    reset_session
     @current_user = nil
     @current_user_has_shop = nil
   end

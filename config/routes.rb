@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       post :verify
     end
   end
+  resource :login_email, only: %i{ new create }
+  resources :user_emails, only: %i{ new create }
   resources :users, only: %i{ new create }
   resources :shops, only: %i{ new create index show edit update destroy} do
     collection do

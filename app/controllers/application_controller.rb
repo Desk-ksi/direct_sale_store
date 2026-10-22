@@ -18,13 +18,16 @@ class ApplicationController < ActionController::Base
     @current_user_has_shop ||= UserShop.find_by(user_id: session[:user_id]) if logged_in?
   end
   def logout
-    session[:user_id] = nil
+    reset_session
     @current_user = nil
     @current_user_has_shop = nil
   end
 
   private
 
+  # 店舗関係や投稿関係を操作しようとしたら、ログインを求められる
+  # ログインしたのちに、最初行きたかったところに戻るようにリクエストした時のパスをsessionに残しておく
+  # ログイン関係や店舗登録関係はログイン後にもしもsession[:request_path]があればそっちに飛ぶようにする
   def require_login
     unless logged_in?
       session[:request_path] = request.path

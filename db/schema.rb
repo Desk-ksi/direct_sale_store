@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_03_151808) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_13_173127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -87,10 +87,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_151808) do
     t.datetime "created_at", null: false
     t.string "email"
     t.string "name", null: false
-    t.string "phone_number", null: false
+    t.string "password_digest"
+    t.string "phone_number"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
+    t.check_constraint "email::text <> ''::text", name: "email_check"
+    t.check_constraint "phone_number IS NOT NULL OR email IS NOT NULL", name: "phone_number_email_check"
+    t.check_constraint "phone_number::text <> ''::text", name: "phone_number_check"
   end
 
   add_foreign_key "post_images", "posts"

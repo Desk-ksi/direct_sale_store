@@ -9,7 +9,9 @@ class LoginEmailsController < ApplicationController
   # ただ現状では、本番のデータベースにそのテーブルを作っておらず、rate_limitだけならそこまでキャッシュを使わないため、各々用のキャッシュ保存先を作っている
   # なお、メモリを使う保存先に変えたことで、サーバーを再起動すると、キャッシュに保存していた回数が消える状況である
   RATE_LIMIT_STORE_EMAIL = ActiveSupport::Cache::MemoryStore.new
-  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy, only: :create, store: RATE_LIMIT_STORE_EMAIL
+  # emailを全角や空白をなくした状態にして、そのemailから５回リクエストがあったらにしているbyのところ
+  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy,by: -> { params[:email].to_s.unicode_normalize(:nfkc).gsub(" ", "").downcase },
+   only: :create, store: RATE_LIMIT_STORE_EMAIL
 
   def new;end
 

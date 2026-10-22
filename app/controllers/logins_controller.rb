@@ -10,8 +10,8 @@ class LoginsController < ApplicationController
   # なお、メモリを使う保存先に変えたことで、サーバーを再起動すると、キャッシュに保存していた回数が消える状況である
   RATE_LIMIT_STORE_SMS = ActiveSupport::Cache::MemoryStore.new
   RATE_LIMIT_STORE_VERIFY = ActiveSupport::Cache::MemoryStore.new
-  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy, only: :create, name: "create_limit", store: RATE_LIMIT_STORE_SMS
-  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy, only: :verify, name: "verify_limit", store: RATE_LIMIT_STORE_VERIFY
+  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy, by: -> { params[:phone_number].to_s.delete("^0-9").sub(/0/,'+81') }, only: :create, name: "create_limit", store: RATE_LIMIT_STORE_SMS
+  rate_limit to: 5, within: 5.minutes, with: :redirect_to_busy, by: -> { session[:phone_number] }, only: :verify, name: "verify_limit", store: RATE_LIMIT_STORE_VERIFY
 
   def new;end
 

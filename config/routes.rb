@@ -14,28 +14,28 @@ Rails.application.routes.draw do
   root "static_pages#top"
   get "how_to", to: "static_pages#how_to"
   get "how_to/user", to: "static_pages#user_how_to"
-  get "how_to/shop", to:"static_pages#shop_how_to"
-  get "how_to/post", to:"static_pages#post_how_to"
-  get "how_to/promote", to:"static_pages#promote_how_to"
+  get "how_to/shop", to: "static_pages#shop_how_to"
+  get "how_to/post", to: "static_pages#post_how_to"
+  get "how_to/promote", to: "static_pages#promote_how_to"
   get "how_to/shop_edit", to: "static_pages#shop_edit_how_to"
   get "how_to/post_edit", to: "static_pages#post_edit_how_to"
-  resource :login, only: %i{ new create destroy } do
+  resource :login, only: %i[ new create destroy ] do
     collection do
       get :confirm
       post :verify
     end
   end
-  resource :login_email, only: %i{ new create }
-  resources :user_emails, only: %i{ new create }
-  resources :users, only: %i{ new create }
-  resources :shops, only: %i{ new create index show edit update destroy} do
+  resource :login_email, only: %i[ new create ]
+  resources :user_emails, only: %i[ new create ]
+  resources :users, only: %i[ new create ]
+  resources :shops, only: %i[ new create index show edit update destroy] do
     collection do
       get :complete
       get :index_distance
       get :my_shops
     end
-    resources :posts, only: %i{ new create index show edit update destroy } 
+    resources :posts, only: %i[ new create index show edit update destroy ]
   end
   get "my_shops", to: "posts#my_shops"
-  resource :profile, only: %i{ show edit update destroy }
+  resource :profile, only: %i[ show edit update destroy ]
 end

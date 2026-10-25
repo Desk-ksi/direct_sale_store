@@ -14,7 +14,7 @@ class PostsController < ApplicationController
       redirect_to root_path, success: "今日の出荷状況を投稿しました"
     else
       flash.now[:danger] = "投稿に失敗しました。再度投稿してください"
-      render :new,status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
   def my_shops
@@ -36,9 +36,9 @@ class PostsController < ApplicationController
     shop = current_user.shops.find(params[:shop_id])
     @post = shop.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to shop_posts_path(shop), success: '投稿の変更が完了しました'
+      redirect_to shop_posts_path(shop), success: "投稿の変更が完了しました"
     else
-      flash.now[:danger] = '投稿の変更に失敗しました'
+      flash.now[:danger] = "投稿の変更に失敗しました"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -46,10 +46,10 @@ class PostsController < ApplicationController
     shop = current_user.shops.find(params[:shop_id])
     @post = shop.posts.find(params[:id])
     if @post.destroy
-      redirect_to shop_posts_path(shop), success: '投稿の削除が完了しました'
+      redirect_to shop_posts_path(shop), success: "投稿の削除が完了しました"
     else
       @posts = shop.posts.page(params[:page])
-      flash.now[:danger] = '投稿の削除に失敗しました'
+      flash.now[:danger] = "投稿の削除に失敗しました"
       render :index, status: :see_other
     end
   end
@@ -58,7 +58,6 @@ class PostsController < ApplicationController
 
   def post_params
     # post_images_attributes 関連づけられたテーブルからのパラメーターはこのようにはいり、その中でどのカラムを使うかを指定。[]の中に、post_imagesテーブルのどのカラムを使うかを指定する
-    params.require(:post).permit(:comment,:merchandise, :schedule, :top_merchandise, post_images_attributes: [:id, :post_image])
+    params.require(:post).permit(:comment, :merchandise, :schedule, :top_merchandise, post_images_attributes: [ :id, :post_image ])
   end
 end
-

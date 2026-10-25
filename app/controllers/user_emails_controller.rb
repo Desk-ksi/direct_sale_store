@@ -1,7 +1,7 @@
 class UserEmailsController < ApplicationController
   skip_before_action :require_login
   skip_before_action :require_login_has_shop
-  before_action :logged_in_new_shop_path?, only: %i{ new }
+  before_action :logged_in_new_shop_path?, only: %i[ new ]
 
   def new
     @user = User.new()
@@ -15,9 +15,9 @@ class UserEmailsController < ApplicationController
       # セッション固定攻撃対策でsessionを更新する前に一度リセットする
       reset_session
       session[:user_id] = @user.id
-      redirect_to redirect_path || new_shop_path, success: '登録が完了しました'
+      redirect_to redirect_path || new_shop_path, success: "登録が完了しました"
     else
-      flash.now[:danger] = '失敗しました。もう一度お試しください'
+      flash.now[:danger] = "失敗しました。もう一度お試しください"
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,5 +33,4 @@ class UserEmailsController < ApplicationController
       redirect_to new_shop_path, success: "店舗登録を行なってください"
     end
   end
-
 end

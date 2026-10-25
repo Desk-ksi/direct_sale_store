@@ -23,6 +23,4 @@ class Post < ApplicationRecord
     # そうすることで、この投稿を持っているshopを持っているuserかを確認することができる
     shop.user_shops.exists?(user_id: user&.id)
   end
-
-    
 end

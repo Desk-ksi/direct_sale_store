@@ -6,7 +6,7 @@ class User < ApplicationRecord
   # 入力された大文字や全角のまま検索してしまい、保存してある値と合わなくて見つからない
   # normalizes は代入、保存、更新に加えて、find_by などの検索に渡した値にも同じ変換をかけてくれる
   # なのでログインの検索でもコントローラー側に変換を書かなくていい
-  normalizes :email, with: -> email {email.unicode_normalize(:nfkc).gsub(" ", "").downcase}
+  normalizes :email, with: ->(email) { email.unicode_normalize(:nfkc).gsub(" ", "").downcase }
   before_validation :nullify_blank_email
   before_validation :nullify_blank_phone_number
   # has_secure_passwordでは、デフォルトでパスワードが必須になるため、validationsをfalseにして自作する
@@ -24,11 +24,11 @@ class User < ApplicationRecord
   # 発動条件をpassword_digestにすると、すでに登録している人が、ユーザー編集をした時にバリデーションが発動してしまう。この時にはpasswordを入力するエリアはないのに(エラーになる)
   # そのため、実際に各入力欄で入力された値達の塊であるオブジェクトから、passwordを抜き出して、passwordが存在すればバリデーションを発動させる。
   # オブジェクトを取り出すのがProcで、オブジェクトをaとして、aからpasswordを取り出している
-  validates :password, length: (6..24), confirmation: true, if: Proc.new{ |a| a.password.present? }
+  validates :password, length: (6..24), confirmation: true, if: Proc.new { |a| a.password.present? }
 
   # passwordを入力したら、確認用password(password_cofirmation)と照合して一致していたら通すバリデーション
   # user編集の際に確認用passwordを必須にすると使いづらいため、on: :createでuser作成時のみで、オブジェクトにpasswordがあるときだけに発動するバリデーションとする（passwordのバリデーションの説明と一緒）
-  validates :password_confirmation, presence: true, on: :create, if: Proc.new{ |a| a.password.present? }
+  validates :password_confirmation, presence: true, on: :create, if: Proc.new { |a| a.password.present? }
   validates :name, presence: true
   # phone_numberでのログインかemail+passwordでのログインを選択できるように改造
   # phone_numberがあるなら、ユニークで電話番号の正規表現に合うかバリデーション
@@ -72,7 +72,7 @@ class User < ApplicationRecord
   # そうなると、からで登録した人たちは「””」空文字が登録される
   # 「””」が二人目になると、ユニーク規制に引っかかり、登録できなくなるため、空文字だったら、nilにするバリデーションの前でコールバックを行う
   # 最初は if email == "" にしていたが、これでは" "に対応できない
-  # blnkは""も" "もnilも感知してtrueにするため、ifでtrueだったら、次に行くようにしている 
+  # blnkは""も" "もnilも感知してtrueにするため、ifでtrueだったら、次に行くようにしている
   def nullify_blank_email
     # モデルはどのインスタンスかがわかっているため、カラム名（email）だけで該当の値を取り出せる
     if email.blank?
@@ -86,5 +86,4 @@ class User < ApplicationRecord
       self.phone_number = nil
     end
   end
-
 end

@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
-  skip_before_action :require_login, only: %i{ index index_distance show }
-  skip_before_action :require_login_has_shop, only: %i{ new create index index_distance show }
+  skip_before_action :require_login, only: %i[ index index_distance show ]
+  skip_before_action :require_login_has_shop, only: %i[ new create index index_distance show ]
   def index
     # kaminariでページネーションを実装。20件ごとの設定
     @shops = Shop.includes(:posts).page(params[:page]).order(created_at: :desc)
@@ -16,10 +16,10 @@ class ShopsController < ApplicationController
       y2 = t.longitude * Math::PI / 180
 
       diff_y = (y1 - y2).abs
-      
+
       calc1 = Math.cos(x2) * Math.sin(diff_y)
       calc2 = Math.cos(x1) * Math.sin(x2) - Math.sin(x1) * Math.cos(x2) * Math.cos(diff_y)
-      
+
       numerator = Math.sqrt(calc1 ** 2 + calc2 ** 2)
       denominator = Math.sin(x1) * Math.sin(x2) + Math.cos(x1) * Math.cos(x2) * Math.cos(diff_y)
       degree = Math.atan2(numerator, denominator)
@@ -27,13 +27,13 @@ class ShopsController < ApplicationController
       a = 6378.137
       result = degree * a
 
-      distance.push( [result, t] )
+      distance.push([ result, t ])
     end
     # 配列で取得した距離と店舗の配列を距離順に並び替えて、インスタンス変数にして、viewで使用する
     # 現状配列には、距離と店舗オブジェクトがセットになっている
     # sortで並び変えはできるが、距離と店舗どちらで並び替えるかを定義しないといけない
     # |x| x[0] は配列の最初の値を元にsortすることを示している
-    distance = distance.sort_by{|x| x[0]}
+    distance = distance.sort_by { |x| x[0] }
     # 配列にkaminariでページネーションをするときは以下の形になる
     @distance = Kaminari.paginate_array(distance).page(params[:page])
   end
@@ -69,20 +69,20 @@ class ShopsController < ApplicationController
   def update
     @shop = Shop.find(params[:id])
     if @shop.update(shop_params)
-      redirect_to my_shops_shops_path, success: '更新に成功しました'
+      redirect_to my_shops_shops_path, success: "更新に成功しました"
     else
-      flash.now[:danger] = '更新できませんでした'
+      flash.now[:danger] = "更新できませんでした"
       render :edit, status: :unprocessable_entity
     end
   end
   def destroy
     @shop = Shop.find(params[:id])
     if @shop.destroy
-      redirect_to root_path, success: '店舗の削除が完了しました'
+      redirect_to root_path, success: "店舗の削除が完了しました"
     else
       @user = current_user
       @shops = @user.shops.page(params[:page])
-      flash.now[:danger] = '店舗の削除に失敗しました'
+      flash.now[:danger] = "店舗の削除に失敗しました"
       render :my_shops, status: :see_other
     end
   end

@@ -1,5 +1,9 @@
 // JSの読み込みが、ページのbodyよりも上にあるためdocument.addEventListener("DOMContentLoaded"を入れないと、要素を見つけられない
-document.addEventListener("DOMContentLoaded", function() {
+// 上記は古い書き方だった。Rails７以降は、gem turbo-railsが標準で入っている
+// これでは、turbo:load（最初の読み込みの時と新しいページが表示されるたびに発生）
+// これで、ページが表示されるタイミングで、addEventListenerが使えるようになった
+// 参考：　https://qiita.com/gon0821/items/3aaa4a252f7c936ca2bb
+document.addEventListener("turbo:load", function() {
   const locationGetButton = document.getElementById('get-location-btn');
   const latitudeGotText = document.getElementById('shop_latitude');
   const longitudeGotText = document.getElementById('shop_longitude');
@@ -19,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const imageShopPhoto = document.getElementById('photo-preview-img');
   const imageShopFiled = document.getElementById('shop_image');
   const imageShopLabel = document.getElementById('photo-upload-label');
@@ -37,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const imagePostPhoto = document.getElementById('post-photo-preview-img');
   const imagePostFiled = document.getElementById('post_image');
   const imagePostLabel = document.getElementById('post-photo-upload-label');
@@ -56,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // 現在地を取得して、現在地をパラメーターにしてindex_distance_shops_pathに送る
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
   const distanceGetButton = document.getElementById('search-location-btn');
   if (distanceGetButton) {
     distanceGetButton.addEventListener('click', function() {

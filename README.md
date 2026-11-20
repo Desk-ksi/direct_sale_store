@@ -118,7 +118,7 @@
 
 | 分類 | 技術 |
 |---|---|
-| 言語 / フレームワーク | Ruby 3.4.12(3.2.3から更新) / Ruby on Rails 8.1 |
+| 言語 / フレームワーク | Ruby 3.4.13(3.2.3から3.4.12に更新 さらに3.4.13に更新 ) / Ruby on Rails 8.1 |
 | データベース | PostgreSQL |
 | フロントエンド | Bootstrap 5、JavaScript（importmap） |
 | 画像アップロード | CarrierWave |
